@@ -6,6 +6,4 @@ const mapStateToProps = state => {
   return { currentUser };
 };
 
-const SecurityContainer = connect(mapStateToProps)(SecurityComponent);
-
-export default SecurityContainer;
+export default connect(mapStateToProps)(SecurityComponent);

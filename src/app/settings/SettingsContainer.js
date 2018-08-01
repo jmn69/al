@@ -6,6 +6,4 @@ const mapStateToProps = state => {
   return { currentUser };
 };
 
-const SettingsContainer = connect(mapStateToProps)(SettingsComponent);
-
-export default SettingsContainer;
+export default connect(mapStateToProps)(SettingsComponent);

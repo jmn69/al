@@ -6,6 +6,4 @@ const mapStateToProps = state => {
   return { currentUser };
 };
 
-const DashboardContainer = connect(mapStateToProps)(DashboardComponent);
-
-export default DashboardContainer;
+export default connect(mapStateToProps)(DashboardComponent);

@@ -1,0 +1,32 @@
+[
+  {
+    "id": "App.Dashboard",
+    "defaultMessage": "Dashboard",
+    "filepath": "src/App.i.js"
+  },
+  {
+    "id": "App.Security",
+    "defaultMessage": "Security",
+    "filepath": "src/App.i.js"
+  },
+  {
+    "id": "App.Settings",
+    "defaultMessage": "Settings",
+    "filepath": "src/App.i.js"
+  },
+  {
+    "id": "App.Lock",
+    "defaultMessage": "Lock",
+    "filepath": "src/App.i.js"
+  },
+  {
+    "id": "Locale.Fr",
+    "defaultMessage": "Fr",
+    "filepath": "src/locale/Locale.i.js"
+  },
+  {
+    "id": "Locale.En",
+    "defaultMessage": "En",
+    "filepath": "src/locale/Locale.i.js"
+  }
+]
