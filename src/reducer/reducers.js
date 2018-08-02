@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import appReducer from './appReducer.js';
-import localeReducer from './locale/reducer';
+import localeReducer from '../locale/reducer';
 
 const rootReducer = combineReducers({
   app: appReducer,

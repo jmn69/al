@@ -13,8 +13,4 @@ export default defineMessages({
     id: 'App.Settings',
     defaultMessage: 'Settings',
   },
-  Lock: {
-    id: 'App.Lock',
-    defaultMessage: 'Lock',
-  },
 });
