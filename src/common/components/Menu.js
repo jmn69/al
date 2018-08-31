@@ -15,7 +15,7 @@ export default styled(Menu)`
 
   /* General sidebar styles */
   .bm-menu {
-    background: ${props => props.theme.primary};
+    background: ${props => props.theme.white};
     padding: 2.5em 1.5em 0;
     font-size: 1.15em;
   }
@@ -23,21 +23,5 @@ export default styled(Menu)`
   /* Morph shape necessary with bubble or elastic */
   .bm-morph-shape {
     fill: #373a47;
-  }
-
-  /* Wrapper for item list */
-  .bm-item-list {
-    color: #b8b7ad;
-    padding: 0.8em;
-  }
-
-  /* Individual item */
-  .bm-item {
-    display: inline-block;
-  }
-
-  /* Styling of overlay */
-  .bm-overlay {
-    background: rgba(0, 0, 0, 0.3);
   }
 `;

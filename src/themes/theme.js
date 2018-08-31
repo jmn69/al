@@ -1,11 +1,8 @@
 export default {
   primary: '#00a8e8',
-  accent: '#ffffff',
-
-  primaryTextColor: '#00171f',
-
-  primaryDark: '#007ea7',
-  primaryLight: '#00a8e8',
-
-  accentDark: '#00171f',
+  accent: '#FF2C00',
+  third: '#FFB600',
+  darkGray: '#344245',
+  lightGray: '#F9FBFB',
+  white: '#ffffff',
 };

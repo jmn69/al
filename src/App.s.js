@@ -11,8 +11,8 @@ export const AppContainer = styled.div`
   height: calc(100% - 48px);
   margin-left: 0;
   padding: 20px;
-  background: ${props => props.theme.accent};
-  color: ${props => props.theme.primaryTextColor};
+  background: ${props => props.theme.lightGray};
+  color: ${props => props.theme.darkGray};
 `;
 
 export const Container = styled.div`
