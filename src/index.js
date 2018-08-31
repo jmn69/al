@@ -5,6 +5,8 @@ import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
 import { injectGlobal } from 'styled-components';
 import store from './store';
+import './externals/react-grid-layout/styles.css';
+import './externals/react-resizable/styles.css';
 
 injectGlobal`
   body {
