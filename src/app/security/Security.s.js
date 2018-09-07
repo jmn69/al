@@ -6,3 +6,7 @@ export const CardContent = styled.div`
   display: flex;
   align-items: center;
 `;
+
+export const IconWrapper = styled.div`
+  text-align: center;
+`;

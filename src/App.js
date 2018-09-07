@@ -15,7 +15,8 @@ import { connect } from 'react-redux';
 import T from 'prop-types';
 import { ThemeProvider } from 'styled-components';
 
-import theme from './themes/theme';
+import styledTheme from './themes/styledTheme';
+import rebassTheme from './themes/rebassTheme';
 import Menu from './app/menu/Menu';
 import Toolbar from './app/toolbar/ToolbarContainer';
 
@@ -48,15 +49,8 @@ class App extends Component {
     return (
       <IntlProvider messages={messages} key={locale} locale={locale}>
         <Router history={history}>
-          <ThemeProvider theme={theme}>
-            <RebassProvider
-              theme={{
-                fonts: {
-                  sans: 'Roboto',
-                  mono: 'Roboto',
-                },
-              }}
-            >
+          <ThemeProvider theme={styledTheme}>
+            <RebassProvider theme={rebassTheme}>
               <Container>
                 <Menu
                   isOpen={isMenuOpen}
