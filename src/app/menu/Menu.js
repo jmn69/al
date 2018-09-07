@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import T from 'prop-types';
+
 import MenuBase from 'Common/components/Menu';
 import NavItem from 'Common/components/NavItem';
 import MenuIntl from './Menu.i';

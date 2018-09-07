@@ -8,10 +8,13 @@ import store from './store';
 import './externals/react-grid-layout/styles.css';
 import './externals/react-resizable/styles.css';
 
+require('typeface-roboto');
+
 injectGlobal`
   body {
     margin: 0;
     padding: 0;
+    font-family: "Roboto"
   }
 `;
 

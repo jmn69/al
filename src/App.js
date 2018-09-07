@@ -49,7 +49,14 @@ class App extends Component {
       <IntlProvider messages={messages} key={locale} locale={locale}>
         <Router history={history}>
           <ThemeProvider theme={theme}>
-            <RebassProvider>
+            <RebassProvider
+              theme={{
+                fonts: {
+                  sans: 'Roboto',
+                  mono: 'Roboto',
+                },
+              }}
+            >
               <Container>
                 <Menu
                   isOpen={isMenuOpen}
