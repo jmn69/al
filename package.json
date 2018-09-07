@@ -81,8 +81,7 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
     "extract:messages": "react-intl-cra 'src/**/*.{js,jsx}' -o 'src/i18n/messages/messages.json'",
-    "manage:translations": "node ./translationRunner.js",
-    "build:langs": "cross-env BABEL_ENV=development NODE_ENV=development ./node_modules/.bin/babel-node scripts/buildIntl.js --presets=es2015"
+    "manage:translations": "node ./translationRunner.js"
   },
   "jest": {
     "collectCoverageFrom": [

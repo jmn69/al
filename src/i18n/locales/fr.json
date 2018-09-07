@@ -3,6 +3,17 @@
   "App.Lock": "Verrouiller",
   "App.Security": "Sécurité",
   "App.Settings": "Paramètres",
+  "CommonTrad.ActivateNow": "Activer maintenant",
+  "CommonTrad.Cancel": "Annuler",
+  "CommonTrad.See": "Voir",
   "Locale.En": "En",
-  "Locale.Fr": "Fr"
+  "Locale.Fr": "Fr",
+  "LockWidget.ModalContent":
+    "La sécurité du domicile va être activé dans {seconds} secondes",
+  "LockWidget.ModalTitle": "Activer la sécurité",
+  "LockWidget.SecurityActivated": "Sécurité activé",
+  "LockWidget.SecurityDeactivated": "Securité désactivé",
+  "Security.LatestAlerts": "Dernières alertes",
+  "Security.ListOfCameras": "Liste des caméras",
+  "Security.SeeTheCameras": "Voir les cameras"
 }

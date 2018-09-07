@@ -3,6 +3,17 @@
   "App.Lock": "Lock",
   "App.Security": "Security",
   "App.Settings": "Settings",
+  "CommonTrad.ActivateNow": "Activate now",
+  "CommonTrad.Cancel": "Cancel",
+  "CommonTrad.See": "See",
   "Locale.En": "En",
-  "Locale.Fr": "Fr"
+  "Locale.Fr": "Fr",
+  "LockWidget.ModalContent":
+    "The security of the house will be activated in {seconds} seconds",
+  "LockWidget.ModalTitle": "Enabling security",
+  "LockWidget.SecurityActivated": "Security activated",
+  "LockWidget.SecurityDeactivated": "Security deactivated",
+  "Security.LatestAlerts": "Latest alerts",
+  "Security.ListOfCameras": "List of cameras",
+  "Security.SeeTheCameras": "See the cameras"
 }

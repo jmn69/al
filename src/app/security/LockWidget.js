@@ -15,7 +15,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLock, faUnlock } from '@fortawesome/free-solid-svg-icons';
 import T from 'prop-types';
 import { FormattedMessage, injectIntl } from 'react-intl';
-import { Box, Flex } from 'grid-styled';
+import { Box } from 'grid-styled';
 import { withTheme } from 'styled-components';
 
 import LockWidgetIntl from './LockWidget.i';

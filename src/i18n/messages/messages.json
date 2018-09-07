@@ -2,22 +2,73 @@
   {
     "id": "App.Dashboard",
     "defaultMessage": "Dashboard",
-    "filepath": "src/App.i.js"
+    "filepath": "src/app/menu/Menu.i.js"
   },
   {
     "id": "App.Security",
     "defaultMessage": "Security",
-    "filepath": "src/App.i.js"
+    "filepath": "src/app/menu/Menu.i.js"
   },
   {
     "id": "App.Settings",
     "defaultMessage": "Settings",
-    "filepath": "src/App.i.js"
+    "filepath": "src/app/menu/Menu.i.js"
+  },
+  {
+    "id": "LockWidget.SecurityActivated",
+    "defaultMessage": "Security activated",
+    "filepath": "src/app/security/LockWidget.i.js"
+  },
+  {
+    "id": "LockWidget.SecurityDeactivated",
+    "defaultMessage": "Security deactivated",
+    "filepath": "src/app/security/LockWidget.i.js"
+  },
+  {
+    "id": "LockWidget.ModalTitle",
+    "defaultMessage": "Enabling security",
+    "filepath": "src/app/security/LockWidget.i.js"
+  },
+  {
+    "id": "LockWidget.ModalContent",
+    "defaultMessage":
+      "The security of the house will be activated in {seconds} seconds",
+    "filepath": "src/app/security/LockWidget.i.js"
+  },
+  {
+    "id": "Security.LatestAlerts",
+    "defaultMessage": "Latest alerts",
+    "filepath": "src/app/security/Security.i.js"
+  },
+  {
+    "id": "Security.SeeTheCameras",
+    "defaultMessage": "See the cameras",
+    "filepath": "src/app/security/Security.i.js"
+  },
+  {
+    "id": "Security.ListOfCameras",
+    "defaultMessage": "List of cameras",
+    "filepath": "src/app/security/Security.i.js"
   },
   {
     "id": "App.Lock",
     "defaultMessage": "Lock",
-    "filepath": "src/App.i.js"
+    "filepath": "src/app/toolbar/Toolbar.i.js"
+  },
+  {
+    "id": "CommonTrad.Cancel",
+    "defaultMessage": "Cancel",
+    "filepath": "src/common/CommonTrad.i.js"
+  },
+  {
+    "id": "CommonTrad.ActivateNow",
+    "defaultMessage": "Activate now",
+    "filepath": "src/common/CommonTrad.i.js"
+  },
+  {
+    "id": "CommonTrad.See",
+    "defaultMessage": "See",
+    "filepath": "src/common/CommonTrad.i.js"
   },
   {
     "id": "Locale.Fr",
