@@ -65,22 +65,16 @@ class LockWidget extends Component {
       <Fragment>
         <Card onClick={this.handleSecurityModClick} background={background}>
           <CardContent>
-            <Flex alignItems="center" justifyContent="center">
-              <Box width={2 / 5}>
-                <IconWrapper>
-                  <FontAwesomeIcon color={iconColor} size="5x" icon={icon} />
-                </IconWrapper>
-              </Box>
-              <Box width={3 / 5}>
-                <Text
-                  color={theme.darkGray}
-                  textAlign="center"
-                  fontSize="title"
-                >
-                  <FormattedMessage {...message} />
-                </Text>
-              </Box>
-            </Flex>
+            <Box width={2 / 5}>
+              <IconWrapper>
+                <FontAwesomeIcon color={iconColor} size="5x" icon={icon} />
+              </IconWrapper>
+            </Box>
+            <Box width={3 / 5}>
+              <Text color={theme.darkGray} textAlign="center" fontSize="title">
+                <FormattedMessage {...message} />
+              </Text>
+            </Box>
           </CardContent>
         </Card>
         <Modal isOpen={isOpen} onClose={this.handleModalClose}>

@@ -9,4 +9,8 @@ export default defineMessages({
     id: 'CommonTrad.ActivateNow',
     defaultMessage: 'Activate now',
   },
+  See: {
+    id: 'CommonTrad.See',
+    defaultMessage: 'See',
+  },
 });
