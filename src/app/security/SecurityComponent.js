@@ -1,16 +1,26 @@
 import React, { Component } from 'react';
 import Card from 'Common/components/Card';
+import ListGroup from 'Common/components/ListGroup';
+import ListItem from 'Common/components/ListItem';
 import Text from 'Common/components/Text';
 import { Box, Flex } from 'grid-styled';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCamera } from '@fortawesome/free-solid-svg-icons';
+import { faCamera, faImage } from '@fortawesome/free-solid-svg-icons';
 import T from 'prop-types';
 import LockWidget from './LockWidget';
 import { compose } from 'redux';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import { withTheme } from 'styled-components';
 
-import { CardContent, IconWrapper, CardTitle } from './Security.s';
+import {
+  CardContent,
+  IconWrapper,
+  CardTitle,
+  ListWrapper,
+  DateAlertWrapper,
+  CameraAlertWrapper,
+  ImageAlertWrapper,
+} from './Security.s';
 import SecurityIntl from './Security.i';
 
 class SecurityComponent extends Component {
@@ -61,7 +71,45 @@ class SecurityComponent extends Component {
                     </Text>
                   </CardTitle>
                 </Box>
-                <CardContent withTitle>alerts</CardContent>
+                <CardContent alignItems="flex-start" withTitle>
+                  <ListWrapper>
+                    <ListGroup>
+                      <ListItem padding="0.5rem 1.25rem">
+                        <DateAlertWrapper>10/09/18 à 10:00:34</DateAlertWrapper>
+                        <CameraAlertWrapper>Camera 1</CameraAlertWrapper>
+                        <ImageAlertWrapper>
+                          <FontAwesomeIcon
+                            color="gray"
+                            size="2x"
+                            icon={faImage}
+                          />
+                        </ImageAlertWrapper>
+                      </ListItem>
+                      <ListItem padding="0.5rem 1.25rem">
+                        <DateAlertWrapper>10/09/18 à 09:58:45</DateAlertWrapper>
+                        <CameraAlertWrapper>Camera 1</CameraAlertWrapper>
+                        <ImageAlertWrapper>
+                          <FontAwesomeIcon
+                            color="gray"
+                            size="2x"
+                            icon={faImage}
+                          />
+                        </ImageAlertWrapper>
+                      </ListItem>
+                      <ListItem padding="0.5rem 1.25rem">
+                        <DateAlertWrapper>07/09/18 à 11:03:20</DateAlertWrapper>
+                        <CameraAlertWrapper>Camera 2</CameraAlertWrapper>
+                        <ImageAlertWrapper>
+                          <FontAwesomeIcon
+                            color="gray"
+                            size="2x"
+                            icon={faImage}
+                          />
+                        </ImageAlertWrapper>
+                      </ListItem>
+                    </ListGroup>
+                  </ListWrapper>
+                </CardContent>
               </Card>
             </Box>
           </Flex>
