@@ -113,6 +113,7 @@ class LockWidget extends Component {
 
   handleModalClose = () => {
     this.setState({ isOpen: false });
+    clearInterval(this.state.intervalId);
   };
 
   handleCancel = () => {
