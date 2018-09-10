@@ -3,6 +3,7 @@ import { Modal as RebassModal } from 'rebass/dist/Modal';
 
 export const Modal = styled(RebassModal)`
   padding: 0;
+  z-index: 1;
 `;
 
 export const ModalHeader = styled.div`

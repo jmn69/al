@@ -46,9 +46,13 @@ export const DateAlertWrapper = styled.div`
 `;
 
 export const CameraAlertWrapper = styled.div`
-  margin-top: 20px;
+  margin-top: 14px;
 `;
 
 export const ImageAlertWrapper = styled.div`
   float: right;
+`;
+
+export const CardHeaderWrapper = styled.div`
+  margin-bottom: 16px;
 `;

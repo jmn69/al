@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Card from 'Common/components/Card';
 import ListGroup from 'Common/components/ListGroup';
 import ListItem from 'Common/components/ListItem';
+import Button from 'Common/components/Button';
+import StyledTable from 'Common/components/StyledTable';
 import Text from 'Common/components/Text';
 import { Box, Flex } from 'grid-styled';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -20,6 +22,7 @@ import {
   DateAlertWrapper,
   CameraAlertWrapper,
   ImageAlertWrapper,
+  CardHeaderWrapper,
 } from './Security.s';
 import SecurityIntl from './Security.i';
 
@@ -116,13 +119,63 @@ class SecurityComponent extends Component {
           <Flex>
             <Box px={2} width={1}>
               <Card>
-                <Box width={1 / 7}>
-                  <CardTitle>
-                    <Text>
-                      <FormattedMessage {...SecurityIntl.ListOfCameras} />
-                    </Text>
-                  </CardTitle>
-                </Box>
+                <CardHeaderWrapper>
+                  <Flex justifyContent="space-between">
+                    <Box width={1 / 7}>
+                      <CardTitle>
+                        <Text>
+                          <FormattedMessage {...SecurityIntl.ListOfCameras} />
+                        </Text>
+                      </CardTitle>
+                    </Box>
+                    <Button bg={theme.primary} small children="Nouveau" />
+                  </Flex>
+                </CardHeaderWrapper>
+                <StyledTable
+                  bg={theme.third}
+                  bc={theme.third}
+                  color={theme.white}
+                >
+                  <thead>
+                    <tr>
+                      <th>Camera name</th>
+                      <th>Emplacement</th>
+                      <th>Status</th>
+                      <th>Detection status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>C1</td>
+                      <td>Garage</td>
+                      <td>On</td>
+                      <td>Idle</td>
+                      <td>actions</td>
+                    </tr>
+                    <tr>
+                      <td>C2</td>
+                      <td>Salon</td>
+                      <td>On</td>
+                      <td>Idle</td>
+                      <td>actions</td>
+                    </tr>
+                    <tr>
+                      <td>C3</td>
+                      <td>Devant maison</td>
+                      <td>On</td>
+                      <td>Idle</td>
+                      <td>actions</td>
+                    </tr>
+                    <tr>
+                      <td>C4</td>
+                      <td>Derriere maison</td>
+                      <td>On</td>
+                      <td>Idle</td>
+                      <td>actions</td>
+                    </tr>
+                  </tbody>
+                </StyledTable>
               </Card>
             </Box>
           </Flex>
