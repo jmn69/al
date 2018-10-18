@@ -13,4 +13,8 @@ export default defineMessages({
     id: 'CommonTrad.See',
     defaultMessage: 'See',
   },
+  FieldRequired: {
+    id: 'CommonTrad.FieldRequired',
+    defaultMessage: 'This field is required',
+  },
 });

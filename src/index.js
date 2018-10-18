@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import Root from './Root';
 import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
 import { injectGlobal } from 'styled-components';
@@ -20,7 +20,7 @@ injectGlobal`
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <Root />
   </Provider>,
   document.getElementById('root')
 );

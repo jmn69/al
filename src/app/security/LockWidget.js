@@ -19,7 +19,7 @@ import { Box } from 'grid-styled';
 import { withTheme } from 'styled-components';
 
 import LockWidgetIntl from './LockWidget.i';
-import CommonIntl from '../../common/CommonTrad.i';
+import CommonIntl from 'Common/CommonTrad.i';
 
 class LockWidget extends Component {
   static propTypes = {

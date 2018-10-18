@@ -4,6 +4,7 @@ export default {
     mono: 'Roboto',
   },
   fontSizes: {
+    small: '12px',
     medium: '14px',
     button: '16px',
     large: '20px',
