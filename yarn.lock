@@ -6100,6 +6100,10 @@ react-is@^16.3.1:
   version "16.4.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.4.1.tgz#d624c4650d2c65dbd52c72622bbf389435d9776e"
 
+react-pattern-lock@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/react-pattern-lock/-/react-pattern-lock-1.0.6.tgz#52ea112933c3bc91f0a0653a7f27748a2f1c11cd"
+
 react-redux@^5.0.7:
   version "5.0.7"
   resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-5.0.7.tgz#0dc1076d9afb4670f993ffaef44b8f8c1155a4c8"

@@ -6,7 +6,7 @@ import OutsideAlerter from '../../common/components/OutsideAlerter';
 
 export default class Modal extends Component {
   static propTypes = {
-    children: T.element.isRequired,
+    children: T.oneOfType([T.element, T.arrayOf(T.element)]).isRequired,
     width: T.string,
     onClose: T.func.isRequired,
     isOpen: T.bool.isRequired,

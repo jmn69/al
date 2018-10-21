@@ -3,7 +3,8 @@ import styled from 'styled-components';
 export default styled.div`
   position: relative;
   display: flex;
-  justify-content: space-between;
+  justify-content: ${props =>
+    props.justify ? props.justify : 'space-between'};
   align-items: center;
   padding: ${props => (props.padding ? props.padding : '0.75rem 1.25rem')};
   margin-bottom: -1px;

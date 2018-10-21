@@ -16,7 +16,7 @@ import Switch from 'react-router-dom/Switch';
 import styledTheme from './themes/styledTheme';
 import rebassTheme from './themes/rebassTheme';
 import App from './App';
-import Login from './app/login/Login';
+import LoginContainer from './app/login/LoginContainer';
 import translations from './i18n/locales';
 import ProtectedRoutes from './common/components/ProtectedRoutes';
 
@@ -40,7 +40,7 @@ class Root extends Component {
           <ThemeProvider theme={styledTheme}>
             <RebassProvider theme={rebassTheme}>
               <Switch>
-                <Route path="/login" component={Login} />
+                <Route path="/login" component={LoginContainer} />
                 <ProtectedRoutes path="/" component={App} />
               </Switch>
             </RebassProvider>

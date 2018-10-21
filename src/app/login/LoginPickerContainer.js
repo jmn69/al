@@ -1,9 +1,22 @@
 import { connect } from 'react-redux';
 import LoginPickerComponent from './LoginPickerComponent';
+import { login } from './redux/operations';
 
 const mapStateToProps = state => {
-  const { currentUser } = state.app;
-  return { currentUser };
+  const { error, isLoading } = state.login;
+  return {
+    error,
+    isLoading,
+  };
 };
 
-export default connect(mapStateToProps)(LoginPickerComponent);
+const mapDispatchToProps = dispatch => {
+  return {
+    login: formData => dispatch(login(formData)),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LoginPickerComponent);

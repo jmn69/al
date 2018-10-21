@@ -17,4 +17,12 @@ export default defineMessages({
     id: 'Login.Password',
     defaultMessage: 'Enter your password',
   },
+  Login: {
+    id: 'Login.Login',
+    defaultMessage: 'Login',
+  },
+  ModalTitle: {
+    id: 'Login.ModalTitle',
+    defaultMessage: 'Choose your pattern',
+  },
 });

@@ -16,7 +16,8 @@ export const isLocalStorageSupported = () => {
  * @returns {Users}
  */
 export const getUsers = () => {
-  return JSON.parse(localStorage.getItem('users'));
+  const usersFromLS = localStorage.getItem('users');
+  return usersFromLS ? JSON.parse(usersFromLS) : [];
 };
 
 /**
@@ -25,6 +26,15 @@ export const getUsers = () => {
  */
 export const setUsers = users => {
   localStorage.setItem('users', JSON.stringify(users));
+};
+
+export const addNewUser = newUser => {
+  const users = getUsers();
+  if (!users || !Array.isArray(users) || users.length === 0) {
+    setUsers([newUser]);
+  }
+  const tempUsers = users.filter(user => user.id !== newUser.id);
+  setUsers([...tempUsers, ...[newUser]]);
 };
 
 export const findUser = userId => {
@@ -69,7 +79,8 @@ export const switchCurrentUser = (newCurrentUserId, newCurrentUserName) => {
  */
 
 export const getCurrentUser = () => {
-  return JSON.parse(localStorage.getItem('currentUser'));
+  const currentUserFromLS = localStorage.getItem('currentUser');
+  return currentUserFromLS ? JSON.parse(currentUserFromLS) : {};
 };
 
 export const setCurrentUser = user => {

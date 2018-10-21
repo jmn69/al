@@ -23,6 +23,7 @@ export default class Input extends Component {
     required: T.bool,
     error: T.any,
     touched: T.bool,
+    onClick: T.func,
   };
 
   state = {
@@ -58,6 +59,7 @@ export default class Input extends Component {
       error,
       touched,
       readOnly,
+      onClick,
     } = this.props;
 
     return (
@@ -70,6 +72,7 @@ export default class Input extends Component {
           type={type || 'text'}
           onChange={this.handleChange}
           onFocus={onFocus}
+          onClick={onClick}
           onBlur={onBlur}
           value={value}
           placeholder={placeholder}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import T from 'prop-types';
+import { Redirect } from 'react-router-dom';
 
 import { getUsers } from 'Common/utils/localStorage';
 import { Container, ContentContainer } from './Login.s';
@@ -10,13 +11,31 @@ export default class Login extends Component {
   static propTypes = {
     theme: T.any,
     intl: T.any,
+    authCheckIsLoading: T.bool,
+    isAuthenticated: T.bool,
+    hasInit: T.bool,
+    authCheck: T.func,
   };
 
   state = {
     userFound: getUsers() && getUsers().length > 0,
   };
 
+  async componentDidMount() {
+    await this.props.authCheck();
+  }
+
   render() {
+    const { isAuthenticated, hasInit, authCheckIsLoading } = this.props;
+
+    if (authCheckIsLoading || !hasInit) {
+      return <div>LOADINGDINGDING</div>;
+    }
+
+    if (isAuthenticated) {
+      return <Redirect to="/" />;
+    }
+
     return (
       <Container>
         <ContentContainer>

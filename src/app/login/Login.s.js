@@ -40,3 +40,12 @@ export const FooterContainer = styled.div`
   display: flex;
   justify-content: space-between;
 `;
+
+export const UserNameLabel = styled.div`
+  margin-left: 20px;
+`;
+
+export const PatternContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;

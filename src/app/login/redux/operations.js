@@ -1,4 +1,4 @@
-import { setCurrentUser } from 'Common/utils/localStorage';
+import { setCurrentUser, addNewUser } from 'Common/utils/localStorage';
 import makeBasicAPIActions from 'Common/utils/makeBasicAPIActions';
 import { rootApi } from '../../../../config/config';
 import history from '../../../history';
@@ -20,16 +20,21 @@ const login = makeBasicAPIActions(
           const user = await response.json();
           const { username, id } = user;
           setCurrentUser(user);
+          addNewUser({ username, id });
           dispatch(success({ username, id }));
           // TODO: Redirect to initial url if there is one
           history.push('/');
+          return Promise.resolve();
         } catch (error) {
           dispatch(failure(error));
+          return Promise.reject();
         }
       } else if (response.status === 404) {
         dispatch(failure('The username and password do not match'));
+        return Promise.reject();
       } else {
         dispatch(failure('Something went wrong'));
+        return Promise.reject();
       }
     };
   }
