@@ -13,4 +13,28 @@ export default defineMessages({
     id: 'Security.ListOfCameras',
     defaultMessage: 'List of cameras',
   },
+  CameraName: {
+    id: 'Security.CameraName',
+    defaultMessage: 'Camera name',
+  },
+  PublicDomain: {
+    id: 'Security.PublicDomain',
+    defaultMessage: 'Public domain',
+  },
+  PrivateIp: {
+    id: 'Security.PrivateIp',
+    defaultMessage: 'Private IP',
+  },
+  Status: {
+    id: 'Security.Status',
+    defaultMessage: 'Status',
+  },
+  DetectionStatus: {
+    id: 'Security.DetectionStatus',
+    defaultMessage: 'Detection status',
+  },
+  Actions: {
+    id: 'Security.Actions',
+    defaultMessage: 'Actions',
+  },
 });

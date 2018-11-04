@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import Route from 'react-router-dom/Route';
 import T from 'prop-types';
 import { authOperations } from '../../auth/redux';
+import Loader from 'Common/components/Loader';
 
 class ProtectedRoutes extends Component {
   static propTypes = {
@@ -19,7 +20,7 @@ class ProtectedRoutes extends Component {
     const { isAuthenticated, hasInit, authCheckIsLoading } = rest;
 
     if (authCheckIsLoading || !hasInit) {
-      return <div>LOADINGDINGDING</div>;
+      return <Loader fullPage />;
     }
 
     if (!isAuthenticated) {

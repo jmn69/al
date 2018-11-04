@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import T from 'prop-types';
 import { Redirect } from 'react-router-dom';
 
+import Loader from 'Common/components/Loader';
 import { getUsers } from 'Common/utils/localStorage';
 import { Container, ContentContainer } from './Login.s';
 import LoginFormContainer from './LoginFormContainer';
@@ -29,7 +30,7 @@ export default class Login extends Component {
     const { isAuthenticated, hasInit, authCheckIsLoading } = this.props;
 
     if (authCheckIsLoading || !hasInit) {
-      return <div>LOADINGDINGDING</div>;
+      return <Loader fullPage />;
     }
 
     if (isAuthenticated) {

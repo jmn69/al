@@ -1,9 +1,17 @@
 import types from './types';
+import makeBasicAPIReducer from 'Common/utils/makeBasicAPIReducer';
+import { combineReducers } from 'redux';
+
+const camerasReducer = makeBasicAPIReducer(
+  types.CAMERAS_REQUEST,
+  types.CAMERAS_SUCCESS,
+  types.CAMERAS_FAILURE
+);
 
 const INITIAL_STATE = {
   lock: false,
 };
-const securityReducer = (state = INITIAL_STATE, action) => {
+const securityStatusReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case types.SET_SECURITY_MOD: {
       const { payload } = action;
@@ -18,4 +26,9 @@ const securityReducer = (state = INITIAL_STATE, action) => {
   }
 };
 
-export default securityReducer;
+const rootSecurityReducer = combineReducers({
+  status: securityStatusReducer,
+  cameras: camerasReducer,
+});
+
+export default rootSecurityReducer;
