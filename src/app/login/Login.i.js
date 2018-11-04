@@ -14,7 +14,7 @@ export default defineMessages({
     defaultMessage: 'Password',
   },
   PasswordPlaceholder: {
-    id: 'Login.Password',
+    id: 'Login.PasswordPlaceholder',
     defaultMessage: 'Enter your password',
   },
   Login: {

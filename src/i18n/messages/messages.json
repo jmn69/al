@@ -1,5 +1,35 @@
 [
   {
+    "id": "Login.Username",
+    "defaultMessage": "Username",
+    "filepath": "src/app/login/Login.i.js"
+  },
+  {
+    "id": "Login.UsernamePlaceholder",
+    "defaultMessage": "Enter your user name",
+    "filepath": "src/app/login/Login.i.js"
+  },
+  {
+    "id": "Login.Password",
+    "defaultMessage": "Password",
+    "filepath": "src/app/login/Login.i.js"
+  },
+  {
+    "id": "Login.PasswordPlaceholder",
+    "defaultMessage": "Enter your password",
+    "filepath": "src/app/login/Login.i.js"
+  },
+  {
+    "id": "Login.Login",
+    "defaultMessage": "Login",
+    "filepath": "src/app/login/Login.i.js"
+  },
+  {
+    "id": "Login.ModalTitle",
+    "defaultMessage": "Choose your pattern",
+    "filepath": "src/app/login/Login.i.js"
+  },
+  {
     "id": "App.Dashboard",
     "defaultMessage": "Dashboard",
     "filepath": "src/app/menu/Menu.i.js"
@@ -51,6 +81,46 @@
     "filepath": "src/app/security/Security.i.js"
   },
   {
+    "id": "Security.CameraName",
+    "defaultMessage": "Camera name",
+    "filepath": "src/app/security/Security.i.js"
+  },
+  {
+    "id": "Security.PublicDomain",
+    "defaultMessage": "Public domain",
+    "filepath": "src/app/security/Security.i.js"
+  },
+  {
+    "id": "Security.PrivateIp",
+    "defaultMessage": "Private IP",
+    "filepath": "src/app/security/Security.i.js"
+  },
+  {
+    "id": "Security.DetectionStatus",
+    "defaultMessage": "Detection status",
+    "filepath": "src/app/security/Security.i.js"
+  },
+  {
+    "id": "Security.Actions",
+    "defaultMessage": "Actions",
+    "filepath": "src/app/security/Security.i.js"
+  },
+  {
+    "id": "Security.Deactivated",
+    "defaultMessage": "Deactivated",
+    "filepath": "src/app/security/Security.i.js"
+  },
+  {
+    "id": "Security.NoAlarm",
+    "defaultMessage": "No alarm",
+    "filepath": "src/app/security/Security.i.js"
+  },
+  {
+    "id": "Security.DetectAlarm",
+    "defaultMessage": "Detect an alarm",
+    "filepath": "src/app/security/Security.i.js"
+  },
+  {
     "id": "App.Lock",
     "defaultMessage": "Lock",
     "filepath": "src/app/toolbar/Toolbar.i.js"
@@ -68,6 +138,31 @@
   {
     "id": "CommonTrad.See",
     "defaultMessage": "See",
+    "filepath": "src/common/CommonTrad.i.js"
+  },
+  {
+    "id": "CommonTrad.FieldRequired",
+    "defaultMessage": "This field is required",
+    "filepath": "src/common/CommonTrad.i.js"
+  },
+  {
+    "id": "CommonTrad.Online",
+    "defaultMessage": "Online",
+    "filepath": "src/common/CommonTrad.i.js"
+  },
+  {
+    "id": "CommonTrad.Offline",
+    "defaultMessage": "Offline",
+    "filepath": "src/common/CommonTrad.i.js"
+  },
+  {
+    "id": "CommonTrad.Status",
+    "defaultMessage": "Status",
+    "filepath": "src/common/CommonTrad.i.js"
+  },
+  {
+    "id": "CommonTrad.Unknown",
+    "defaultMessage": "Unknown",
     "filepath": "src/common/CommonTrad.i.js"
   },
   {

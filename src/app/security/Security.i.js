@@ -25,10 +25,6 @@ export default defineMessages({
     id: 'Security.PrivateIp',
     defaultMessage: 'Private IP',
   },
-  Status: {
-    id: 'Security.Status',
-    defaultMessage: 'Status',
-  },
   DetectionStatus: {
     id: 'Security.DetectionStatus',
     defaultMessage: 'Detection status',
@@ -36,5 +32,17 @@ export default defineMessages({
   Actions: {
     id: 'Security.Actions',
     defaultMessage: 'Actions',
+  },
+  Deactivated: {
+    id: 'Security.Deactivated',
+    defaultMessage: 'Deactivated',
+  },
+  NoAlarm: {
+    id: 'Security.NoAlarm',
+    defaultMessage: 'No alarm',
+  },
+  DetectAlarm: {
+    id: 'Security.DetectAlarm',
+    defaultMessage: 'Detect an alarm',
   },
 });

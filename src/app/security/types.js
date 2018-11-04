@@ -1,7 +1,7 @@
 import T from 'prop-types';
 
 export const cameraType = T.shape({
-  id: T.string.isRequired,
+  _id: T.string.isRequired,
   name: T.string.isRequired,
   type: T.number.isRequired,
   publicDomain: T.string.isRequired,

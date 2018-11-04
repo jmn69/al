@@ -7,9 +7,12 @@ export default styled.table`
     width: 100%;
     max-width: 100%;
   }
+  td {
+    height: 60px;
+  }
   td,
   th {
-    padding: 5px 5px;
+    padding: 6px 6px;
   }
   th {
     font-weight: 400;

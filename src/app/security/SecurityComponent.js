@@ -154,7 +154,11 @@ class SecurityComponent extends Component {
                             </Text>
                           </CardTitle>
                         </Box>
-                        <Button bg={theme.primary} small children="Nouveau" />
+                        <Button
+                          bg={theme.primary}
+                          size="small"
+                          children="Nouveau"
+                        />
                       </Flex>
                     </CardHeaderWrapper>
                     <CamerasTable cameras={cameras} />

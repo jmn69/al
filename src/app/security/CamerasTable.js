@@ -5,6 +5,9 @@ import { compose } from 'redux';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import { withTheme } from 'styled-components';
 
+import CommonIntl from 'Common/CommonTrad.i';
+import getKeyOfObjectByValue from 'Common/utils/getKeyOfObjectByValue';
+import ioAlarmEnum from 'Common/enums/ioAlarmEnum';
 import SecurityIntl from './Security.i';
 import { cameraType } from './types';
 
@@ -21,12 +24,30 @@ class SecurityComponent extends Component {
       cameras &&
       Array.isArray(cameras) &&
       cameras.map(camera => (
-        <tr>
+        <tr key={camera._id}>
           <td>{camera.name}</td>
           <td>{camera.publicDomain}</td>
           <td>{camera.privateIp}</td>
-          <td>{camera.isOnline ? 'Online' : 'Offline'}</td>
-          <td>{camera.ioAlarm}</td>
+          <td>
+            {camera.isOnline === null || camera.isOnline === undefined ? (
+              <FormattedMessage {...CommonIntl.Unknown} />
+            ) : (
+              <FormattedMessage
+                {...CommonIntl[camera.isOnline ? 'Online' : 'Offline']}
+              />
+            )}
+          </td>
+          <td>
+            {camera.ioAlarm === null || camera.ioAlarm === undefined ? (
+              <FormattedMessage {...CommonIntl.Unknown} />
+            ) : (
+              <FormattedMessage
+                {...SecurityIntl[
+                  getKeyOfObjectByValue(ioAlarmEnum, camera.ioAlarm)
+                ]}
+              />
+            )}
+          </td>
           <td>actions</td>
         </tr>
       ));
@@ -44,7 +65,7 @@ class SecurityComponent extends Component {
               <FormattedMessage {...SecurityIntl.PrivateIp} />
             </th>
             <th>
-              <FormattedMessage {...SecurityIntl.Status} />
+              <FormattedMessage {...CommonIntl.Status} />
             </th>
             <th>
               <FormattedMessage {...SecurityIntl.DetectionStatus} />
