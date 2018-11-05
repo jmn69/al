@@ -9,7 +9,7 @@ const Loader = props => (
   <LoaderContainer fullPage={props.fullPage}>
     <FontAwesomeIcon
       spin
-      size="3x"
+      size={props.fullPage ? '3x' : props.size}
       color={props.theme.accent}
       icon={faCircleNotch}
     />
@@ -19,6 +19,12 @@ const Loader = props => (
 Loader.propTypes = {
   fullPage: T.bool,
   theme: T.any.isRequired,
+  size: T.string,
+};
+
+Loader.defaultProps = {
+  size: '1x',
+  fullPage: false,
 };
 
 export default withTheme(Loader);

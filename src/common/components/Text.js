@@ -6,4 +6,5 @@ export default styled(RebassText)`
   color: ${props => (props.color ? props.color : props.theme.darkGray)};
   font-size: ${props =>
     props.fontSize ? props.fontSize : props.theme.fontSizes.medium};
+  width: 100%;
 `;

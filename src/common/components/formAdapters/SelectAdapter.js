@@ -1,5 +1,5 @@
-import React, { Fragment } from 'react';
-import { FieldError } from './FormAdapters.s';
+import React from 'react';
+import { FieldError, FormInputContainer } from './FormAdapters.s';
 import Select from '../Select/Select';
 import T from 'prop-types';
 
@@ -15,8 +15,10 @@ const SelectAdapter = ({
   }
   const selectedValue = value;
   return (
-    <Fragment>
+    <FormInputContainer>
       <Select
+        error={meta.error}
+        touched={meta.touched}
         options={options}
         value={options.filter(({ value }) => value === selectedValue)}
         onChange={selectedOption =>
@@ -25,7 +27,7 @@ const SelectAdapter = ({
         {...rest}
       />
       {meta.touched && meta.error && <FieldError>{meta.error}</FieldError>}
-    </Fragment>
+    </FormInputContainer>
   );
 };
 

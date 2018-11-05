@@ -2,10 +2,16 @@ import types from './types';
 import makeBasicAPIReducer from 'Common/utils/makeBasicAPIReducer';
 import { combineReducers } from 'redux';
 
-const camerasReducer = makeBasicAPIReducer(
-  types.CAMERAS_REQUEST,
-  types.CAMERAS_SUCCESS,
-  types.CAMERAS_FAILURE
+const fetchCamerasReducer = makeBasicAPIReducer(
+  types.FETCH_CAMERAS_REQUEST,
+  types.FETCH_CAMERAS_SUCCESS,
+  types.FETCH_CAMERAS_FAILURE
+);
+
+const createCameraReducer = makeBasicAPIReducer(
+  types.CREATE_CAMERA_REQUEST,
+  types.CREATE_CAMERA_SUCCESS,
+  types.CREATE_CAMERA_FAILURE
 );
 
 const INITIAL_STATE = {
@@ -28,7 +34,8 @@ const securityStatusReducer = (state = INITIAL_STATE, action) => {
 
 const rootSecurityReducer = combineReducers({
   status: securityStatusReducer,
-  cameras: camerasReducer,
+  fetchCameras: fetchCamerasReducer,
+  createCamera: createCameraReducer,
 });
 
 export default rootSecurityReducer;

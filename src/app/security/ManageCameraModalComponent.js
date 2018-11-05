@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Box, Flex } from 'grid-styled';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 import T from 'prop-types';
 import { FormattedMessage, injectIntl } from 'react-intl';
 
@@ -9,7 +10,6 @@ import { compose } from 'redux';
 import SecurityIntl from './Security.i';
 import { FormContainer, FormField } from './Security.s';
 import Modal from 'Common/components/Modal';
-// import Loader from 'Common/components/Loader';
 import { Form, Field } from 'react-final-form';
 import Button from 'Common/components/Button';
 import ButtonOutline from 'Common/components/ButtonOutline';
@@ -36,10 +36,36 @@ class ManageCameraModalComponent extends Component {
     isOpen: T.bool.isRequired,
     onModalClose: T.func.isRequired,
     onCancel: T.func.isRequired,
+    createCameraIsLoading: T.bool,
+    createCameraError: T.any,
+    createCamera: T.func,
   };
 
+  componentDidUpdate(prevProps) {
+    const {
+      createCameraIsLoading,
+      createCameraError,
+      onModalClose,
+    } = this.props;
+    const { createCameraIsLoading: prevCreateCameraIsLoading } = prevProps;
+    if (
+      prevCreateCameraIsLoading &&
+      !createCameraIsLoading &&
+      !createCameraError
+    ) {
+      onModalClose();
+    }
+  }
+
   render() {
-    const { intl, isOpen, onModalClose, onCancel, theme } = this.props;
+    const {
+      intl,
+      isOpen,
+      onModalClose,
+      onCancel,
+      theme,
+      createCameraIsLoading,
+    } = this.props;
 
     return (
       <Modal isOpen={isOpen} onClose={onModalClose}>
@@ -51,16 +77,57 @@ class ManageCameraModalComponent extends Component {
             onSubmit={this.handleSubmit}
             validate={values => {
               const errors = {};
-              // if (!values.username) {
-              //   errors.username = (
-              //     <FormattedMessage {...CommonIntl.FieldRequired} />
-              //   );
-              // }
-              // if (values.username && !values.username.trim()) {
-              //   errors.username = (
-              //     <FormattedMessage {...CommonIntl.FieldRequired} />
-              //   );
-              // }
+              if (!values.name) {
+                errors.name = (
+                  <FormattedMessage {...CommonIntl.FieldRequired} />
+                );
+              }
+              if (values.name && !values.name.trim()) {
+                errors.name = (
+                  <FormattedMessage {...CommonIntl.FieldRequired} />
+                );
+              }
+              if (!values.type) {
+                errors.type = (
+                  <FormattedMessage {...CommonIntl.FieldRequired} />
+                );
+              }
+              if (!values.publicDomain) {
+                errors.publicDomain = (
+                  <FormattedMessage {...CommonIntl.FieldRequired} />
+                );
+              }
+              if (values.publicDomain && !values.publicDomain.trim()) {
+                errors.publicDomain = (
+                  <FormattedMessage {...CommonIntl.FieldRequired} />
+                );
+              }
+              if (!values.privateIp) {
+                errors.privateIp = (
+                  <FormattedMessage {...CommonIntl.FieldRequired} />
+                );
+              }
+              if (values.privateIp && !values.privateIp.trim()) {
+                errors.privateIp = (
+                  <FormattedMessage {...CommonIntl.FieldRequired} />
+                );
+              }
+              if (!values.user) {
+                errors.user = (
+                  <FormattedMessage {...CommonIntl.FieldRequired} />
+                );
+              }
+              if (values.user && !values.user.trim()) {
+                errors.user = (
+                  <FormattedMessage {...CommonIntl.FieldRequired} />
+                );
+              }
+              if (!values.pwd) {
+                errors.pwd = <FormattedMessage {...CommonIntl.FieldRequired} />;
+              }
+              if (values.pwd && !values.pwd.trim()) {
+                errors.pwd = <FormattedMessage {...CommonIntl.FieldRequired} />;
+              }
               return errors;
             }}
             render={({ handleSubmit, values, mutators }) => (
@@ -73,6 +140,7 @@ class ManageCameraModalComponent extends Component {
                   <Box width="45%">
                     <FormField>
                       <Field
+                        required
                         name="name"
                         component={InputAdapter}
                         label={intl.formatMessage(CommonIntl.Name)}
@@ -87,6 +155,7 @@ class ManageCameraModalComponent extends Component {
                     <FormField>
                       <Field
                         name="type"
+                        required
                         component={SelectAdapter}
                         options={cameraTypeToSelectOption(intl)}
                         label={intl.formatMessage(CommonIntl.Type)}
@@ -99,6 +168,7 @@ class ManageCameraModalComponent extends Component {
                   <Box width="45%">
                     <FormField>
                       <Field
+                        required
                         name="publicDomain"
                         component={InputAdapter}
                         label={intl.formatMessage(SecurityIntl.PublicDomain)}
@@ -112,6 +182,7 @@ class ManageCameraModalComponent extends Component {
                   <Box width="45%">
                     <FormField>
                       <Field
+                        required
                         name="privateIp"
                         component={InputAdapter}
                         label={intl.formatMessage(SecurityIntl.PrivateIp)}
@@ -125,6 +196,7 @@ class ManageCameraModalComponent extends Component {
                   <Box width="45%">
                     <FormField>
                       <Field
+                        required
                         name="user"
                         component={InputAdapter}
                         label={intl.formatMessage(CommonIntl.User)}
@@ -138,6 +210,7 @@ class ManageCameraModalComponent extends Component {
                   <Box width="45%">
                     <FormField>
                       <Field
+                        required
                         name="pwd"
                         component={InputAdapter}
                         label={intl.formatMessage(CommonIntl.Pwd)}
@@ -181,7 +254,17 @@ class ManageCameraModalComponent extends Component {
           <Button
             bg={theme.accent}
             onClick={this.handleCreate}
-            children={intl.formatMessage(CommonIntl.Create)}
+            children={
+              <Fragment>
+                <FormattedMessage {...CommonIntl.Create} />
+                {createCameraIsLoading ? (
+                  <Fragment>
+                    &nbsp; &nbsp;
+                    <FontAwesomeIcon spin size="1x" icon={faCircleNotch} />
+                  </Fragment>
+                ) : null}
+              </Fragment>
+            }
           />
         </ModalFooter>
       </Modal>
@@ -196,7 +279,7 @@ class ManageCameraModalComponent extends Component {
   };
 
   handleSubmit = values => {
-    return;
+    this.props.createCamera(values);
   };
 }
 

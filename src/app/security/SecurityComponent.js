@@ -42,19 +42,28 @@ class SecurityComponent extends Component {
     intl: T.any.isRequired,
   };
 
-  state = { isOpen: false };
+  state = { isOpen: false, initialRenderComplete: false };
 
   componentDidMount() {
     this.props.fetchCameras();
   }
 
+  componentDidUpdate(prevProps) {
+    const { isLoading } = this.props;
+    const { isLoading: prevIsLoading } = prevProps;
+
+    if (prevIsLoading && !isLoading) {
+      this.setState({ initialRenderComplete: true });
+    }
+  }
+
   render() {
     const { lock, setSecurityMod, theme, isLoading, cameras } = this.props;
-    const { isOpen } = this.state;
+    const { isOpen, initialRenderComplete } = this.state;
 
     return (
       <Fragment>
-        {isLoading ? (
+        {!initialRenderComplete ? (
           <Loader fullPage />
         ) : (
           <Flex justifyContent="center">
@@ -145,7 +154,7 @@ class SecurityComponent extends Component {
                 </Box>
               </Flex>
               <Flex>
-                <Box px={2} width={1}>
+                <Box mb={20} px={2} width={1}>
                   <Card>
                     <CardHeaderWrapper>
                       <Flex justifyContent="space-between">
@@ -166,7 +175,11 @@ class SecurityComponent extends Component {
                         />
                       </Flex>
                     </CardHeaderWrapper>
-                    <CamerasTable cameras={cameras} />
+                    {isLoading ? (
+                      <Loader />
+                    ) : (
+                      <CamerasTable cameras={cameras} />
+                    )}
                   </Card>
                 </Box>
               </Flex>
@@ -192,10 +205,6 @@ class SecurityComponent extends Component {
 
   handleCancel = () => {
     this.setState({ isOpen: false });
-  };
-
-  handleCreate = () => {
-    return;
   };
 }
 

@@ -3,13 +3,19 @@ import ManageCameraModalComponent from './ManageCameraModalComponent';
 import { securityOperations } from './redux';
 
 const mapStateToProps = state => {
-  const { currentUser } = state.app;
-  return { currentUser };
+  const {
+    isLoading: createCameraIsLoading,
+    error: createCameraError,
+  } = state.security.createCamera;
+  return {
+    createCameraIsLoading: createCameraIsLoading,
+    createCameraError: createCameraError,
+  };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    setSecurityMod: mod => dispatch(securityOperations.setSecurityMod(mod)),
+    createCamera: camera => dispatch(securityOperations.createCamera(camera)),
   };
 };
 
