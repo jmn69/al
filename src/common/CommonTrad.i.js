@@ -33,4 +33,40 @@ export default defineMessages({
     id: 'CommonTrad.Unknown',
     defaultMessage: 'Unknown',
   },
+  Create: {
+    id: 'CommonTrad.Create',
+    defaultMessage: 'Create',
+  },
+  Name: {
+    id: 'CommonTrad.Name',
+    defaultMessage: 'Name',
+  },
+  Type: {
+    id: 'CommonTrad.Type',
+    defaultMessage: 'Type',
+  },
+  User: {
+    id: 'CommonTrad.User',
+    defaultMessage: 'User',
+  },
+  Pwd: {
+    id: 'CommonTrad.Pwd',
+    defaultMessage: 'Password',
+  },
+  NamePlaceholder: {
+    id: 'CommonTrad.NamePlaceholder',
+    defaultMessage: 'Enter a name',
+  },
+  TypePlaceholder: {
+    id: 'CommonTrad.TypePlaceholder',
+    defaultMessage: 'Enter a type',
+  },
+  PwdPlaceholder: {
+    id: 'CommonTrad.PwdPlaceholder',
+    defaultMessage: 'Enter a password',
+  },
+  UserPlaceholder: {
+    id: 'CommonTrad.UserPlaceholder',
+    defaultMessage: 'Enter a user',
+  },
 });

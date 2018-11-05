@@ -1,16 +1,8 @@
 import React, { Component, Fragment } from 'react';
-import Card from 'Common/components/Card';
-import ListGroup from 'Common/components/ListGroup';
-import ListItem from 'Common/components/ListItem';
-import Loader from 'Common/components/Loader';
-import Button from 'Common/components/Button';
-import Text from 'Common/components/Text';
 import { Box, Flex } from 'grid-styled';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCamera, faImage } from '@fortawesome/free-solid-svg-icons';
 import T from 'prop-types';
-import LockWidget from './LockWidget';
-import CamerasTable from './CamerasTable';
 import { compose } from 'redux';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import { withTheme } from 'styled-components';
@@ -27,6 +19,15 @@ import {
   CardHeaderWrapper,
 } from './Security.s';
 import SecurityIntl from './Security.i';
+import LockWidget from './LockWidget';
+import CamerasTable from './CamerasTable';
+import Card from 'Common/components/Card';
+import ListGroup from 'Common/components/ListGroup';
+import ListItem from 'Common/components/ListItem';
+import Loader from 'Common/components/Loader';
+import Button from 'Common/components/Button';
+import Text from 'Common/components/Text';
+import ManageCameraModalContainer from './ManageCameraModalContainer';
 
 class SecurityComponent extends Component {
   static propTypes = {
@@ -41,12 +42,15 @@ class SecurityComponent extends Component {
     intl: T.any.isRequired,
   };
 
+  state = { isOpen: false };
+
   componentDidMount() {
     this.props.fetchCameras();
   }
 
   render() {
     const { lock, setSecurityMod, theme, isLoading, cameras } = this.props;
+    const { isOpen } = this.state;
 
     return (
       <Fragment>
@@ -158,6 +162,7 @@ class SecurityComponent extends Component {
                           bg={theme.primary}
                           size="small"
                           children="Nouveau"
+                          onClick={this.handleNewCameraClick}
                         />
                       </Flex>
                     </CardHeaderWrapper>
@@ -168,9 +173,30 @@ class SecurityComponent extends Component {
             </Box>
           </Flex>
         )}
+        <ManageCameraModalContainer
+          isOpen={isOpen}
+          onModalClose={this.handleModalClose}
+          onCancel={this.handleCancel}
+        />
       </Fragment>
     );
   }
+
+  handleNewCameraClick = () => {
+    this.setState({ isOpen: true });
+  };
+
+  handleModalClose = () => {
+    this.setState({ isOpen: false });
+  };
+
+  handleCancel = () => {
+    this.setState({ isOpen: false });
+  };
+
+  handleCreate = () => {
+    return;
+  };
 }
 
 export default compose(

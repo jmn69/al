@@ -56,3 +56,12 @@ export const ImageAlertWrapper = styled.div`
 export const CardHeaderWrapper = styled.div`
   margin-bottom: 16px;
 `;
+
+export const FormContainer = styled.form`
+  width: 100%;
+`;
+
+export const FormField = styled.div`
+  margin-top: 5px;
+  margin-bottom: 15px;
+`;

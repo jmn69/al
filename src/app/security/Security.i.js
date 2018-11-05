@@ -45,4 +45,32 @@ export default defineMessages({
     id: 'Security.DetectAlarm',
     defaultMessage: 'Detect an alarm',
   },
+  CreateCameraModalTitle: {
+    id: 'Security.CreateCameraModalTitle',
+    defaultMessage: 'Create a camera',
+  },
+  PublicDomainPlaceholder: {
+    id: 'CommonTrad.PublicDomainPlaceholder',
+    defaultMessage: 'Enter a public domain or ip',
+  },
+  PrivateIpPlaceholder: {
+    id: 'CommonTrad.PrivateIpPlaceholder',
+    defaultMessage: 'Enter a private ip',
+  },
+  WsStreamUrlPlaceholder: {
+    id: 'CommonTrad.WsStreamUrlPlaceholder',
+    defaultMessage: 'Enter a websocket stream url',
+  },
+  WsStreamUrl: {
+    id: 'Security.WsStreamUrl',
+    defaultMessage: 'Websocket stream url',
+  },
+  C1: {
+    id: 'Security.C1',
+    defaultMessage: 'C1',
+  },
+  C2: {
+    id: 'Security.C2',
+    defaultMessage: 'C2',
+  },
 });
