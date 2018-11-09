@@ -69,4 +69,12 @@ export default defineMessages({
     id: 'CommonTrad.UserPlaceholder',
     defaultMessage: 'Enter a user',
   },
+  Yes: {
+    id: 'CommonTrad.Yes',
+    defaultMessage: 'Yes',
+  },
+  No: {
+    id: 'CommonTrad.No',
+    defaultMessage: 'No',
+  },
 });

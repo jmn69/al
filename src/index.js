@@ -7,6 +7,7 @@ import { injectGlobal } from 'styled-components';
 import store from './store';
 import './externals/react-grid-layout/styles.css';
 import './externals/react-resizable/styles.css';
+import 'react-awesome-popover/dest/react-awesome-popover.css';
 
 require('typeface-roboto');
 

@@ -14,6 +14,12 @@ const createCameraReducer = makeBasicAPIReducer(
   types.CREATE_CAMERA_FAILURE
 );
 
+const deleteCameraReducer = makeBasicAPIReducer(
+  types.DELETE_CAMERA_REQUEST,
+  types.DELETE_CAMERA_SUCCESS,
+  types.DELETE_CAMERA_FAILURE
+);
+
 const INITIAL_STATE = {
   lock: false,
 };
@@ -36,6 +42,7 @@ const rootSecurityReducer = combineReducers({
   status: securityStatusReducer,
   fetchCameras: fetchCamerasReducer,
   createCamera: createCameraReducer,
+  deleteCamera: deleteCameraReducer,
 });
 
 export default rootSecurityReducer;

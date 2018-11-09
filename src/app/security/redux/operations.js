@@ -57,8 +57,37 @@ const createCamera = makeBasicAPIActions(
   }
 );
 
+const deleteCamera = makeBasicAPIActions(
+  'DELETE_CAMERA',
+  (request, success, failure) => cameraId => {
+    return async (dispatch, getState) => {
+      dispatch(request());
+      const response = await apiRequest({
+        endpoint: `cameras/${cameraId}`,
+        method: 'DELETE',
+      });
+
+      if (response.ok) {
+        try {
+          const camera = await response.json();
+          dispatch(success(camera));
+          dispatch(fetchCameras());
+          return Promise.resolve();
+        } catch (error) {
+          dispatch(failure(error));
+          return Promise.reject();
+        }
+      } else {
+        dispatch(failure('Something went wrong'));
+        return Promise.reject();
+      }
+    };
+  }
+);
+
 export default {
   setSecurityMod,
   fetchCameras,
   createCamera,
+  deleteCamera,
 };

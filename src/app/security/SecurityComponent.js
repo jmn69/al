@@ -20,7 +20,7 @@ import {
 } from './Security.s';
 import SecurityIntl from './Security.i';
 import LockWidget from './LockWidget';
-import CamerasTable from './CamerasTable';
+import CamerasTableContainer from './CamerasTableContainer';
 import Card from 'Common/components/Card';
 import ListGroup from 'Common/components/ListGroup';
 import ListItem from 'Common/components/ListItem';
@@ -178,7 +178,10 @@ class SecurityComponent extends Component {
                     {isLoading ? (
                       <Loader />
                     ) : (
-                      <CamerasTable cameras={cameras} />
+                      <CamerasTableContainer
+                        cameras={cameras}
+                        onEditClick={this.handleEditClick}
+                      />
                     )}
                   </Card>
                 </Box>
@@ -194,6 +197,10 @@ class SecurityComponent extends Component {
       </Fragment>
     );
   }
+
+  handleEditClick = cameraId => {
+    console.log(cameraId);
+  };
 
   handleNewCameraClick = () => {
     this.setState({ isOpen: true });

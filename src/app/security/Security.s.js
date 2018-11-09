@@ -65,3 +65,13 @@ export const FormField = styled.div`
   margin-top: 5px;
   margin-bottom: 15px;
 `;
+
+export const IconActionWrapper = styled.div`
+  cursor: pointer;
+`;
+
+export const IconActionContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+`;

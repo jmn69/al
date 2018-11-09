@@ -73,4 +73,9 @@ export default defineMessages({
     id: 'Security.C2',
     defaultMessage: 'C2',
   },
+  DeleteCameraConfirmation: {
+    id: 'Security.DeleteCameraConfirmation',
+    defaultMessage:
+      'You are about to delete the camera {camera}, are you sure ?',
+  },
 });

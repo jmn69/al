@@ -32,10 +32,4 @@ export default styled.table`
   tr:nth-child(even) {
     background: #fff;
   }
-  td button {
-    padding: 0px 15px 0px 30px !important;
-    font-size: 14px !important;
-    min-width: 85px !important;
-    height: 30px !important;
-  }
 `;

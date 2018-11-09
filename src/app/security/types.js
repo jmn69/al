@@ -9,6 +9,6 @@ export const cameraType = T.shape({
   pwd: T.string.isRequired,
   user: T.string.isRequired,
   ioAlarm: T.number,
-  isOnline: T.bool.isRequired,
-  wsStreamUrl: T.string.isRequired,
+  isOnline: T.bool,
+  wsStreamUrl: T.string,
 });
