@@ -43,7 +43,12 @@ class ConfirmationPopoverComponent extends React.Component {
       yesIsLoading,
     } = this.props;
     return (
-      <Popover action="click" open={open} placement={placement}>
+      <Popover
+        targetClass="test"
+        action="click"
+        open={open}
+        placement={placement}
+      >
         {button}
         <Container>
           <Text>{text}</Text>

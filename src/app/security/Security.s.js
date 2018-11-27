@@ -75,3 +75,20 @@ export const IconActionContainer = styled.div`
   justify-content: space-around;
   align-items: center;
 `;
+
+export const DetectionStatusContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const ToggleWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`;
+
+export const WrapperLoader = styled.div`
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+`;

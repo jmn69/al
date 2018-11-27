@@ -7,7 +7,13 @@ const mapStateToProps = state => {
     isLoading: deleteCameraIsLoading,
     error: deleteCameraError,
   } = state.security.deleteCamera;
+  const {
+    isLoading: toggleDetectionIsLoading,
+    error: toggleDetectionError,
+  } = state.security.toggleDetectionCamera;
   return {
+    toggleDetectionIsLoading: toggleDetectionIsLoading,
+    toggleDetectionError: toggleDetectionError,
     deleteCameraIsLoading: deleteCameraIsLoading,
     deleteCameraError: deleteCameraError,
   };
@@ -17,6 +23,8 @@ const mapDispatchToProps = dispatch => {
   return {
     deleteCamera: cameraId =>
       dispatch(securityOperations.deleteCamera(cameraId)),
+    toggleDetection: cameraId =>
+      dispatch(securityOperations.toggleDetection(cameraId)),
   };
 };
 

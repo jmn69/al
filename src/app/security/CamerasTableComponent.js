@@ -1,21 +1,30 @@
-import React, { Component } from 'react';
-import StyledTable from 'Common/components/StyledTable';
+import React, { Component, Fragment } from 'react';
 import T from 'prop-types';
 import { compose } from 'redux';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import { withTheme } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimesCircle, faEdit } from '@fortawesome/free-solid-svg-icons';
+import Toggle from 'react-toggle';
 
+import StyledTable from 'Common/components/StyledTable';
+import Text from 'Common/components/Text';
+import Loader from 'Common/components/Loader';
 import CommonIntl from 'Common/CommonTrad.i';
 import getKeyOfObjectByValue from 'Common/utils/getKeyOfObjectByValue';
 import ioAlarmEnum from 'Common/enums/ioAlarmEnum';
 import SecurityIntl from './Security.i';
 import { cameraType } from './types';
-import { IconActionWrapper, IconActionContainer } from './Security.s';
+import {
+  IconActionWrapper,
+  IconActionContainer,
+  DetectionStatusContainer,
+  ToggleWrapper,
+  WrapperLoader,
+} from './Security.s';
 import ConfirmationPopover from 'Common/components/ConfirmationPopover/ConfirmationPopover';
 
-class SecurityComponent extends Component {
+class CamerasTableComponent extends Component {
   static propTypes = {
     cameras: T.arrayOf(cameraType),
     theme: T.any,
@@ -24,9 +33,12 @@ class SecurityComponent extends Component {
     deleteCamera: T.func.isRequired,
     deleteCameraIsLoading: T.bool.isRequired,
     deleteCameraError: T.any,
+    toggleDetection: T.func.isRequired,
+    toggleDetectionIsLoading: T.bool.isRequired,
+    toggleDectectionError: T.any,
   };
 
-  state = { cameraIdToDelete: null };
+  state = { cameraIdToDelete: null, currentToggleCameraId: null };
 
   componentDidUpdate(prevProps) {
     const { deleteCameraIsLoading, deleteCameraError } = this.props;
@@ -47,35 +59,68 @@ class SecurityComponent extends Component {
       intl,
       onEditClick,
       deleteCameraIsLoading,
+      toggleDetectionIsLoading,
     } = this.props;
-    const { cameraIdToDelete } = this.state;
+    const { cameraIdToDelete, currentToggleCameraId } = this.state;
 
     const camerasRows =
       cameras &&
       Array.isArray(cameras) &&
       cameras.map(camera => (
         <tr key={camera._id}>
-          <td>{camera.name}</td>
-          <td>{camera.publicDomain}</td>
-          <td>{camera.privateIp}</td>
+          <td>
+            <Text>{camera.name}</Text>
+          </td>
+          <td>
+            <Text>{camera.publicDomain}</Text>
+          </td>
+          <td>
+            <Text>{camera.privateIp}</Text>
+          </td>
           <td>
             {camera.isOnline === null || camera.isOnline === undefined ? (
-              <FormattedMessage {...CommonIntl.Unknown} />
+              <Text>
+                <FormattedMessage {...CommonIntl.Unknown} />
+              </Text>
             ) : (
-              <FormattedMessage
-                {...CommonIntl[camera.isOnline ? 'Online' : 'Offline']}
-              />
+              <Text color={camera.isOnline ? theme.success : theme.accent}>
+                <FormattedMessage
+                  {...CommonIntl[camera.isOnline ? 'Online' : 'Offline']}
+                />
+              </Text>
             )}
           </td>
           <td>
             {camera.ioAlarm === null || camera.ioAlarm === undefined ? (
-              <FormattedMessage {...CommonIntl.Unknown} />
+              <Text>
+                <FormattedMessage {...CommonIntl.Unknown} />
+              </Text>
             ) : (
-              <FormattedMessage
-                {...SecurityIntl[
-                  getKeyOfObjectByValue(ioAlarmEnum, camera.ioAlarm)
-                ]}
-              />
+              <Fragment>
+                <DetectionStatusContainer>
+                  <ToggleWrapper>
+                    <Toggle
+                      defaultChecked={camera.ioAlarm === 0 ? false : true}
+                      onChange={() =>
+                        this.handleToggleDetectionStatus(camera._id)
+                      }
+                    />
+                    <WrapperLoader>
+                      {toggleDetectionIsLoading &&
+                      currentToggleCameraId === camera._id ? (
+                        <Loader />
+                      ) : null}
+                    </WrapperLoader>
+                  </ToggleWrapper>
+                  <Text>
+                    <FormattedMessage
+                      {...SecurityIntl[
+                        getKeyOfObjectByValue(ioAlarmEnum, camera.ioAlarm)
+                      ]}
+                    />
+                  </Text>
+                </DetectionStatusContainer>
+              </Fragment>
             )}
           </td>
           <td>
@@ -143,6 +188,13 @@ class SecurityComponent extends Component {
     );
   }
 
+  handleToggleDetectionStatus = cameraId => {
+    if (!this.props.toggleDetectionIsLoading) {
+      this.props.toggleDetection(cameraId);
+      this.setState({ currentToggleCameraId: cameraId });
+    }
+  };
+
   handleDeleteButtonClick = cameraId => {
     if (!this.props.deleteCameraIsLoading) {
       this.setState({ cameraIdToDelete: cameraId });
@@ -161,4 +213,4 @@ class SecurityComponent extends Component {
 export default compose(
   injectIntl,
   withTheme
-)(SecurityComponent);
+)(CamerasTableComponent);

@@ -165,6 +165,7 @@ class SecurityComponent extends Component {
                                 {...SecurityIntl.ListOfCameras}
                               />
                             </Text>
+                            {isLoading ? <Loader /> : null}
                           </CardTitle>
                         </Box>
                         <Button
@@ -175,14 +176,10 @@ class SecurityComponent extends Component {
                         />
                       </Flex>
                     </CardHeaderWrapper>
-                    {isLoading ? (
-                      <Loader />
-                    ) : (
-                      <CamerasTableContainer
-                        cameras={cameras}
-                        onEditClick={this.handleEditClick}
-                      />
-                    )}
+                    <CamerasTableContainer
+                      cameras={cameras}
+                      onEditClick={this.handleEditClick}
+                    />
                   </Card>
                 </Box>
               </Flex>

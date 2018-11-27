@@ -85,9 +85,36 @@ const deleteCamera = makeBasicAPIActions(
   }
 );
 
+const toggleDetection = makeBasicAPIActions(
+  'TOGGLE_DETECTION_CAMERA',
+  (request, success, failure) => cameraId => {
+    return async (dispatch, getState) => {
+      dispatch(request());
+      const response = await apiRequest({
+        endpoint: `cameras/${cameraId}/toggle-detection`,
+      });
+
+      if (response.ok) {
+        try {
+          dispatch(success());
+          dispatch(fetchCameras());
+          return Promise.resolve();
+        } catch (error) {
+          dispatch(failure(error));
+          return Promise.reject();
+        }
+      } else {
+        dispatch(failure('Something went wrong'));
+        return Promise.reject();
+      }
+    };
+  }
+);
+
 export default {
   setSecurityMod,
   fetchCameras,
   createCamera,
   deleteCamera,
+  toggleDetection,
 };

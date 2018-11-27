@@ -20,6 +20,12 @@ const deleteCameraReducer = makeBasicAPIReducer(
   types.DELETE_CAMERA_FAILURE
 );
 
+const toggleDetectionCameraReducer = makeBasicAPIReducer(
+  types.TOGGLE_DETECTION_CAMERA_REQUEST,
+  types.TOGGLE_DETECTION_CAMERA_SUCCESS,
+  types.TOGGLE_DETECTION_CAMERA_FAILURE
+);
+
 const INITIAL_STATE = {
   lock: false,
 };
@@ -43,6 +49,7 @@ const rootSecurityReducer = combineReducers({
   fetchCameras: fetchCamerasReducer,
   createCamera: createCameraReducer,
   deleteCamera: deleteCameraReducer,
+  toggleDetectionCamera: toggleDetectionCameraReducer,
 });
 
 export default rootSecurityReducer;

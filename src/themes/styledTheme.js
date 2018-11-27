@@ -8,4 +8,5 @@ export default {
   lightGray: '#F9FBFB',
   white: '#ffffff',
   error: '#e53935',
+  success: '#4caf50',
 };
