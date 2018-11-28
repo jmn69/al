@@ -7,6 +7,7 @@ import { getUsers } from 'Common/utils/localStorage';
 import { Container, ContentContainer } from './Login.s';
 import LoginFormContainer from './LoginFormContainer';
 import LoginPickerContainer from './LoginPickerContainer';
+import { ToastContainer } from 'react-toastify';
 
 export default class Login extends Component {
   static propTypes = {
@@ -39,6 +40,7 @@ export default class Login extends Component {
 
     return (
       <Container>
+        <ToastContainer autoClose={false} />
         <ContentContainer>
           {this.state.userFound ? (
             <LoginPickerContainer />

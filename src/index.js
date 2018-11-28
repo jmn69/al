@@ -9,6 +9,7 @@ import './externals/react-grid-layout/styles.css';
 import './externals/react-resizable/styles.css';
 import 'react-awesome-popover/dest/react-awesome-popover.css';
 import 'react-toggle/style.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 require('typeface-roboto');
 

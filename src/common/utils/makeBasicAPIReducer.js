@@ -1,3 +1,5 @@
+import { toast } from 'react-toastify';
+
 export default (REQUEST, SUCCESS, FAILURE) => {
   return (state, action) => {
     if (!state) {
@@ -19,6 +21,7 @@ export default (REQUEST, SUCCESS, FAILURE) => {
         };
       }
       case FAILURE:
+        toast.error(action.payload.toString());
         return { ...state, isLoading: false, error: action.payload };
       default:
         return state;

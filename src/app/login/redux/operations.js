@@ -8,13 +8,19 @@ const login = makeBasicAPIActions(
   (request, success, failure) => formData => {
     return async (dispatch, getState) => {
       dispatch(request());
-      const response = await fetch(`${rootApi}auth/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+      let response;
+      try {
+        response = await fetch(`${rootApi}auth/login`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        });
+      } catch (error) {
+        dispatch(failure(error));
+        return Promise.reject();
+      }
       if (response.ok) {
         try {
           const user = await response.json();

@@ -9,7 +9,13 @@ const fetchCameras = makeBasicAPIActions(
   (request, success, failure) => formData => {
     return async (dispatch, getState) => {
       dispatch(request());
-      const response = await apiRequest({ endpoint: `cameras` });
+      let response;
+      try {
+        response = await apiRequest({ endpoint: `cameras` });
+      } catch (error) {
+        dispatch(failure(error));
+        return Promise.reject();
+      }
 
       if (response.ok) {
         try {
@@ -33,11 +39,17 @@ const createCamera = makeBasicAPIActions(
   (request, success, failure) => formData => {
     return async (dispatch, getState) => {
       dispatch(request());
-      const response = await apiRequest({
-        endpoint: `cameras`,
-        method: 'POST',
-        body: JSON.stringify(formData),
-      });
+      let response;
+      try {
+        response = await apiRequest({
+          endpoint: `cameras`,
+          method: 'POST',
+          body: JSON.stringify(formData),
+        });
+      } catch (error) {
+        dispatch(failure(error));
+        return Promise.reject();
+      }
 
       if (response.ok) {
         try {
@@ -62,10 +74,16 @@ const deleteCamera = makeBasicAPIActions(
   (request, success, failure) => cameraId => {
     return async (dispatch, getState) => {
       dispatch(request());
-      const response = await apiRequest({
-        endpoint: `cameras/${cameraId}`,
-        method: 'DELETE',
-      });
+      let response;
+      try {
+        response = await apiRequest({
+          endpoint: `cameras/${cameraId}`,
+          method: 'DELETE',
+        });
+      } catch (error) {
+        dispatch(failure(error));
+        return Promise.reject();
+      }
 
       if (response.ok) {
         try {
@@ -90,9 +108,15 @@ const toggleDetection = makeBasicAPIActions(
   (request, success, failure) => cameraId => {
     return async (dispatch, getState) => {
       dispatch(request());
-      const response = await apiRequest({
-        endpoint: `cameras/${cameraId}/toggle-detection`,
-      });
+      let response;
+      try {
+        response = await apiRequest({
+          endpoint: `cameras/${cameraId}/toggle-detection`,
+        });
+      } catch (error) {
+        dispatch(failure(error));
+        return Promise.reject();
+      }
 
       if (response.ok) {
         try {

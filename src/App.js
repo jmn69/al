@@ -5,6 +5,7 @@ import Switch from 'react-router-dom/Switch';
 import Redirect from 'react-router-dom/Redirect';
 import Menu from './app/menu/Menu';
 import Toolbar from './app/toolbar/ToolbarContainer';
+import { ToastContainer } from 'react-toastify';
 
 import DashboardContainer from './app/dashboard/DashboardContainer';
 import SecurityContainer from './app/security/SecurityContainer';
@@ -30,6 +31,7 @@ export default class App extends Component {
         />
         <Toolbar onMenuClick={this.handleMenuClick} />
         <AppContainer>
+          <ToastContainer autoClose={false} />
           <Switch>
             <Route exact path="/" component={DashboardContainer} />
             <Route path="/security" component={SecurityContainer} />

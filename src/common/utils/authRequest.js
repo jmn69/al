@@ -42,15 +42,20 @@ export const request = async options => {
   const { root, endpoint, method, ...restOptions } = options;
   const url = `${root || rootApi}${endpoint}`;
   console.log(`Request #${requestID}`, url, options);
-  const response = await fetch(url, {
-    method: method || 'GET',
-    headers: {
-      'x-access-token': currentUser.accessToken,
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    ...restOptions,
-  });
+  let response = null;
+  try {
+    response = await fetch(url, {
+      method: method || 'GET',
+      headers: {
+        'x-access-token': currentUser.accessToken,
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      ...restOptions,
+    });
+  } catch (e) {
+    return Promise.reject(e);
+  }
   const unauthentified = response.status === 401;
   if (unauthentified && _requestID <= 3) {
     try {
@@ -59,13 +64,10 @@ export const request = async options => {
         return await request(options);
       }
     } catch (e) {
-      // TODO: handle error
-      console.log(e);
-      return;
+      return Promise.reject(e);
     }
   } else if (response.status >= 400) {
-    // TODO: handle error
-    throw response;
+    Promise.reject(response);
   }
   return response;
 };
