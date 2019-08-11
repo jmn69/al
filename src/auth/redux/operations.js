@@ -1,6 +1,6 @@
+import { toast } from 'react-toastify';
 import { getCurrentUser } from '../../common/utils/localStorage';
 import { request } from '../../common/utils/authRequest';
-import { toast } from 'react-toastify';
 import {
   setIsAuthenticated,
   setAuthCheckIsLoading,
@@ -8,7 +8,7 @@ import {
 } from './actions';
 
 const authCheck = () => {
-  return async (dispatch, getState) => {
+  return async dispatch => {
     dispatch(setAuthCheckIsLoading(true));
     const user = getCurrentUser();
     if (!user) {
@@ -32,7 +32,8 @@ const authCheck = () => {
         dispatch(setAuthCheckIsLoading(false)),
         dispatch(initComplete()),
       ]);
-    } catch (e) {
+    }
+ catch (e) {
       toast.error(e.toString());
       return Promise.all([
         dispatch(setIsAuthenticated(false)),

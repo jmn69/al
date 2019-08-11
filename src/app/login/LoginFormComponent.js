@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Box, Flex } from 'grid-styled';
+import { Box, Flex } from '@rebass/grid';
 import Button from 'Common/components/Button';
 import { compose } from 'redux';
 import { withTheme } from 'styled-components';
@@ -9,19 +9,19 @@ import { Form, Field } from 'react-final-form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 
+import Card from 'Common/components/Card';
+import CommonIntl from 'Common/CommonTrad.i';
+import InputAdapter from 'Common/components/formAdapters/InputAdapter';
+import Modal from 'Common/components/Modal';
+import { ModalHeader, ModalContent } from 'Common/components/Modal.s';
+import PatternLock from 'Common/components/PatternLock';
+import LoginIntl from './Login.i';
 import {
   FormField,
   FormFieldContainer,
   FormContainer,
   FooterContainer,
 } from './Login.s';
-import Card from 'Common/components/Card';
-import CommonIntl from 'Common/CommonTrad.i';
-import LoginIntl from './Login.i';
-import InputAdapter from 'Common/components/formAdapters/InputAdapter';
-import Modal from 'Common/components/Modal';
-import { ModalHeader, ModalContent } from 'Common/components/Modal.s';
-import PatternLock from 'Common/components/PatternLock';
 
 const updateValue = (args, state, { changeValue }) => {
   changeValue(state, args[0].name, () => args[0].value);
@@ -36,6 +36,14 @@ class LoginFormComponent extends Component {
     isLoading: T.bool,
   };
 
+  static defaultProps = {
+    theme: null,
+    intl: null,
+    login: () => {},
+    error: null,
+    isLoading: false,
+  };
+
   state = {
     isOpen: false,
   };
@@ -46,8 +54,8 @@ class LoginFormComponent extends Component {
 
     return (
       <Fragment>
-        <Flex width="100%" alignItems="center" justifyContent="center">
-          <Box width="30%">
+        <Flex width='100%' alignItems='center' justifyContent='center'>
+          <Box width='30%'>
             <Card>
               <Form
                 onSubmit={this.handleSubmit}
@@ -76,16 +84,16 @@ class LoginFormComponent extends Component {
                   }
                   return errors;
                 }}
-                render={({ handleSubmit, values, mutators }) => (
+                render={({ handleSubmit, mutators }) => (
                   <FormContainer onSubmit={handleSubmit}>
                     <FormFieldContainer>
                       <FormField>
                         <Field
-                          name="username"
-                          color="grey"
+                          name='username'
+                          color='grey'
                           component={InputAdapter}
                           label={intl.formatMessage(LoginIntl.Username)}
-                          type="text"
+                          type='text'
                           placeholder={intl.formatMessage(
                             LoginIntl.UsernamePlaceholder
                           )}
@@ -95,11 +103,11 @@ class LoginFormComponent extends Component {
                     <FormFieldContainer>
                       <FormField>
                         <Field
-                          name="password"
-                          color="grey"
+                          name='password'
+                          color='grey'
                           component={InputAdapter}
                           label={intl.formatMessage(LoginIntl.Password)}
-                          type="password"
+                          type='password'
                           readOnly
                           onClick={() => this.setState({ isOpen: true })}
                           placeholder={intl.formatMessage(
@@ -110,25 +118,21 @@ class LoginFormComponent extends Component {
                     </FormFieldContainer>
                     <FooterContainer>
                       <div>{error}</div>
-                      <Button
-                        bg={theme.primary}
-                        small
-                        children={
-                          <Fragment>
-                            <FormattedMessage {...LoginIntl.Login} />
-                            {isLoading ? (
-                              <Fragment>
-                                &nbsp; &nbsp;
-                                <FontAwesomeIcon
-                                  spin
-                                  size="1x"
-                                  icon={faCircleNotch}
-                                />
-                              </Fragment>
-                            ) : null}
-                          </Fragment>
-                        }
-                      />
+                      <Button bg={theme.colors.primary} small>
+                        <Fragment>
+                          <FormattedMessage {...LoginIntl.Login} />
+                          {isLoading ? (
+                            <Fragment>
+                              &nbsp; &nbsp;
+                              <FontAwesomeIcon
+                                spin
+                                size='1x'
+                                icon={faCircleNotch}
+                              />
+                            </Fragment>
+                          ) : null}
+                        </Fragment>
+                      </Button>
                     </FooterContainer>
                     <Modal isOpen={isOpen} onClose={this.handleModalClose}>
                       <ModalHeader>
@@ -144,9 +148,9 @@ class LoginFormComponent extends Component {
                           onChange={pattern =>
                             this.checkPattern(pattern, mutators)
                           }
-                          pointColor={theme.third}
-                          errorColor={theme.accent}
-                          connectorColor={theme.primary}
+                          pointColor={theme.colors.third}
+                          errorColor={theme.colors.accent}
+                          connectorColor={theme.colors.primary}
                         />
                       </ModalContent>
                     </Modal>
@@ -161,7 +165,8 @@ class LoginFormComponent extends Component {
   }
 
   handleSubmit = values => {
-    this.props.login(values);
+    const { login } = this.props;
+    login(values);
   };
 
   handleModalClose = () => {

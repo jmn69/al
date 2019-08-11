@@ -1,3 +1,5 @@
+/* eslint-disable import/prefer-default-export */
+/* eslint-disable no-console */
 import { setTokens, getCurrentUser } from './localStorage';
 import { rootApi } from '../../../config/config';
 import history from '../../history';
@@ -23,14 +25,14 @@ const refreshToken = async user => {
   if (response.status !== 200) {
     history.push('/login');
     return Promise.resolve(false);
-  } else {
-    const data = await response.json();
-    setTokens(user.id, data.accessToken, data.refreshToken);
-    return Promise.resolve(true);
   }
+  const data = await response.json();
+  setTokens(user.id, data.accessToken, data.refreshToken);
+  return Promise.resolve(true);
 };
 
 let _requestID = 0;
+
 export const request = async options => {
   const currentUser = getCurrentUser();
   if (!currentUser || !currentUser.accessToken) {
@@ -38,7 +40,7 @@ export const request = async options => {
     return;
   }
 
-  let requestID = ++_requestID;
+  const requestID = ++_requestID;
   const { root, endpoint, method, ...restOptions } = options;
   const url = `${root || rootApi}${endpoint}`;
   console.log(`Request #${requestID}`, url, options);
@@ -53,7 +55,8 @@ export const request = async options => {
       },
       ...restOptions,
     });
-  } catch (e) {
+  }
+ catch (e) {
     return Promise.reject(e);
   }
   const unauthentified = response.status === 401;
@@ -63,10 +66,12 @@ export const request = async options => {
       if (retry) {
         return await request(options);
       }
-    } catch (e) {
+    }
+ catch (e) {
       return Promise.reject(e);
     }
-  } else if (response.status >= 400) {
+  }
+ else if (response.status >= 400) {
     Promise.reject(response);
   }
   return response;

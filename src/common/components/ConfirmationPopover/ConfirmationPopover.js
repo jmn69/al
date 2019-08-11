@@ -1,16 +1,16 @@
 import React from 'react';
 import T from 'prop-types';
 import Popover from 'react-awesome-popover';
-import { injectIntl } from 'react-intl';
+import { FormattedMessage, injectIntl } from 'react-intl';
 import { withTheme } from 'styled-components';
 import { compose } from 'redux';
 
 import CommonIntl from 'Common/CommonTrad.i';
-import { ButtonContainer, Container } from './ConfirmationPopover.s';
 import ButtonOutline from 'Common/components/ButtonOutline';
 import Button from 'Common/components/Button';
 import Text from 'Common/components/Text';
 import Loader from 'Common/components/Loader';
+import { ButtonContainer, Container } from './ConfirmationPopover.s';
 
 class ConfirmationPopoverComponent extends React.Component {
   static propTypes = {
@@ -28,6 +28,8 @@ class ConfirmationPopoverComponent extends React.Component {
   static defaultProps = {
     placement: 'auto',
     yesIsLoading: false,
+    theme: null,
+    intl: null,
   };
 
   render() {
@@ -44,8 +46,8 @@ class ConfirmationPopoverComponent extends React.Component {
     } = this.props;
     return (
       <Popover
-        targetClass="test"
-        action="click"
+        targetClass='test'
+        action='click'
         open={open}
         placement={placement}
       >
@@ -54,27 +56,22 @@ class ConfirmationPopoverComponent extends React.Component {
           <Text>{text}</Text>
           <ButtonContainer>
             <ButtonOutline
-              color={theme.third}
-              size="small"
-              children={intl.formatMessage(CommonIntl.No)}
+              color={theme.colors.third}
               onClick={onNoClick}
               hover={{
-                color: theme.white,
-                backgroundColor: theme.third,
+                color: theme.colors.white,
+                backgroundColor: theme.colors.third,
               }}
-            />
-            <Button
-              bg={theme.accent}
-              size="small"
-              children={
-                yesIsLoading ? (
-                  <Loader color="white" size="lg" />
-                ) : (
-                  intl.formatMessage(CommonIntl.Yes)
-                )
-              }
-              onClick={onYesClick}
-            />
+            >
+              <FormattedMessage {...CommonIntl.No} />
+            </ButtonOutline>
+            <Button bg={theme.colors.accent} onClick={onYesClick}>
+              {yesIsLoading ? (
+                <Loader color='white' size='lg' />
+              ) : (
+                intl.formatMessage(CommonIntl.Yes)
+              )}
+            </Button>
           </ButtonContainer>
         </Container>
       </Popover>

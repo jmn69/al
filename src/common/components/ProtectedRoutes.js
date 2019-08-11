@@ -1,10 +1,9 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
-import Route from 'react-router-dom/Route';
+import { Redirect, Route } from 'react-router-dom';
 import T from 'prop-types';
-import { authOperations } from '../../auth/redux';
 import Loader from 'Common/components/Loader';
+import { authOperations } from '../../auth/redux';
 
 class ProtectedRoutes extends Component {
   static propTypes = {
@@ -12,9 +11,16 @@ class ProtectedRoutes extends Component {
     authCheck: T.func,
   };
 
+  static defaultProps = {
+    component: null,
+    authCheck: () => {},
+  };
+
   async componentDidMount() {
-    await this.props.authCheck();
+    const { authCheck } = this.props;
+    await authCheck();
   }
+
   render() {
     const { component: Component, ...rest } = this.props;
     const { isAuthenticated, hasInit, authCheckIsLoading } = rest;
@@ -24,7 +30,7 @@ class ProtectedRoutes extends Component {
     }
 
     if (!isAuthenticated) {
-      return <Redirect to="/login" />;
+      return <Redirect to='/login' />;
     }
 
     return <Route {...rest} render={props => <Component {...props} />} />;

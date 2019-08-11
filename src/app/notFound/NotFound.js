@@ -1,24 +1,24 @@
 import React, { Component } from 'react';
-import Link from 'react-router-dom/Link';
+import { Link } from 'react-router-dom';
 import Text from 'Common/components/Text';
 import Heading from 'Common/components/Heading';
+import Button from 'Common/components/Button';
+import { Box } from '@rebass/grid';
 import { Container } from './NotFound.s';
-import { Button } from 'rebass/dist/Button';
-import { Box } from 'grid-styled';
 
 export default class NotFound extends Component {
   render() {
     return (
       <Container>
         <Box m={3}>
-          <Heading children="Page introuvable" textAlign="center" />
+          <Heading textAlign='center'>Page introuvable</Heading>
         </Box>
         <Box m={3}>
-          <Text children="La page n'existe pas" textAlign="center" />
+          <Text textAlign='center'>La page n&apos;existe pas</Text>
         </Box>
         <Box m={3}>
-          <Link to="/">
-            <Button children="Retour sur le tableau de bord" />
+          <Link to='/'>
+            <Button>Retour sur le tableau de bord</Button>
           </Link>
         </Box>
       </Container>

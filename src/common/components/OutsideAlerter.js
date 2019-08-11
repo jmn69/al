@@ -13,6 +13,11 @@ export default class OutsideAlerter extends Component {
     document.removeEventListener('mousedown', this.handleClickOutside);
   }
 
+  render() {
+    const { children } = this.props;
+    return <div ref={this.setWrapperRef}>{children}</div>;
+  }
+
   /**
    * Set the wrapper ref
    */
@@ -24,14 +29,11 @@ export default class OutsideAlerter extends Component {
    * Alert if clicked on outside of element
    */
   handleClickOutside = event => {
+    const { onOutsideClick } = this.props;
     if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-      this.props.onOutsideClick();
+      onOutsideClick();
     }
   };
-
-  render() {
-    return <div ref={this.setWrapperRef}>{this.props.children}</div>;
-  }
 }
 
 OutsideAlerter.propTypes = {

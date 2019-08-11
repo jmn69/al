@@ -22,13 +22,13 @@ export default class Menu extends Component {
         customBurgerIcon={false}
         isOpen={isOpen}
       >
-        <NavItem exact onClick={onLinkClick} to="/">
+        <NavItem exact onClick={onLinkClick} to='/'>
           <FormattedMessage {...MenuIntl.Dashboard} />
         </NavItem>
-        <NavItem onClick={onLinkClick} to="/security">
+        <NavItem onClick={onLinkClick} to='/security'>
           <FormattedMessage {...MenuIntl.Security} />
         </NavItem>
-        <NavItem onClick={onLinkClick} to="/settings">
+        <NavItem onClick={onLinkClick} to='/settings'>
           <FormattedMessage {...MenuIntl.Settings} />
         </NavItem>
       </MenuBase>

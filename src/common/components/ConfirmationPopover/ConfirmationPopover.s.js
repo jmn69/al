@@ -18,6 +18,6 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   background: white;
-  border: 1px solid ${props => props.theme.gray};
+  border: 1px solid ${props => props.theme.colors.gray};
   border-radius: 4px;
 `;

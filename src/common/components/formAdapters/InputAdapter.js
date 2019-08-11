@@ -1,7 +1,7 @@
 import React from 'react';
+import T from 'prop-types';
 import Input from '../Input/Input';
 import { FieldError, FormInputContainer } from './FormAdapters.s';
-import T from 'prop-types';
 
 const InputAdapter = ({ input, meta, onError, ...rest }) => {
   if (meta.touched && meta.error && onError) {
@@ -19,6 +19,12 @@ InputAdapter.propTypes = {
   input: T.any,
   meta: T.any,
   onError: T.func,
+};
+
+InputAdapter.defaultProps = {
+  input: null,
+  meta: null,
+  onError: null,
 };
 
 export default InputAdapter;

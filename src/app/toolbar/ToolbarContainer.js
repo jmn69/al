@@ -1,5 +1,5 @@
-import ToolbarComponent from './ToolbarComponent';
 import { connect } from 'react-redux';
+import ToolbarComponent from './ToolbarComponent';
 import { changeLocale } from '../../locale/action';
 
 const mapStateToProps = state => {

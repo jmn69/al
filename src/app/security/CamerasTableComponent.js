@@ -13,6 +13,7 @@ import Loader from 'Common/components/Loader';
 import CommonIntl from 'Common/CommonTrad.i';
 import getKeyOfObjectByValue from 'Common/utils/getKeyOfObjectByValue';
 import ioAlarmEnum from 'Common/enums/ioAlarmEnum';
+import ConfirmationPopover from 'Common/components/ConfirmationPopover/ConfirmationPopover';
 import SecurityIntl from './Security.i';
 import { cameraType } from './types';
 import {
@@ -22,7 +23,6 @@ import {
   ToggleWrapper,
   WrapperLoader,
 } from './Security.s';
-import ConfirmationPopover from 'Common/components/ConfirmationPopover/ConfirmationPopover';
 
 class CamerasTableComponent extends Component {
   static propTypes = {
@@ -36,6 +36,14 @@ class CamerasTableComponent extends Component {
     toggleDetection: T.func.isRequired,
     toggleDetectionIsLoading: T.bool.isRequired,
     toggleDectectionError: T.any,
+  };
+
+  static defaultProps = {
+    cameras: [],
+    theme: null,
+    intl: null,
+    deleteCameraError: null,
+    toggleDectectionError: null,
   };
 
   state = { cameraIdToDelete: null, currentToggleCameraId: null };
@@ -83,7 +91,11 @@ class CamerasTableComponent extends Component {
                 <FormattedMessage {...CommonIntl.Unknown} />
               </Text>
             ) : (
-              <Text color={camera.isOnline ? theme.success : theme.accent}>
+              <Text
+                color={
+                  camera.isOnline ? theme.colors.success : theme.colors.accent
+                }
+              >
                 <FormattedMessage
                   {...CommonIntl[camera.isOnline ? 'Online' : 'Offline']}
                 />
@@ -100,7 +112,7 @@ class CamerasTableComponent extends Component {
                 <DetectionStatusContainer>
                   <ToggleWrapper>
                     <Toggle
-                      defaultChecked={camera.ioAlarm === 0 ? false : true}
+                      defaultChecked={camera.ioAlarm !== 0}
                       onChange={() =>
                         this.handleToggleDetectionStatus(camera._id)
                       }
@@ -127,25 +139,25 @@ class CamerasTableComponent extends Component {
             <IconActionContainer>
               <IconActionWrapper>
                 <FontAwesomeIcon
-                  color={theme.darkGray}
-                  size="lg"
+                  color={theme.colors.darkGray}
+                  size='lg'
                   icon={faEdit}
                   onClick={() => onEditClick(camera._id)}
                 />
               </IconActionWrapper>
               <ConfirmationPopover
-                placement="left"
-                button={
+                placement='left'
+                button={(
                   <IconActionWrapper
                     onClick={() => this.handleDeleteButtonClick(camera._id)}
                   >
                     <FontAwesomeIcon
-                      color={theme.accent}
-                      size="lg"
+                      color={theme.colors.accent}
+                      size='lg'
                       icon={faTimesCircle}
                     />
                   </IconActionWrapper>
-                }
+)}
                 onYesClick={() => this.handleDeleteYesClick(camera._id)}
                 yesIsLoading={deleteCameraIsLoading}
                 onNoClick={this.handleDeleteNoClick}
@@ -160,26 +172,42 @@ class CamerasTableComponent extends Component {
         </tr>
       ));
     return (
-      <StyledTable bg={theme.third} bc={theme.third} color={theme.white}>
+      <StyledTable
+        bg={theme.colors.third}
+        bc={theme.colors.third}
+        color={theme.colors.white}
+      >
         <thead>
           <tr>
             <th>
-              <FormattedMessage {...SecurityIntl.CameraName} />
+              <Text color='white'>
+                <FormattedMessage {...SecurityIntl.CameraName} />
+              </Text>
             </th>
             <th>
-              <FormattedMessage {...SecurityIntl.PublicDomain} />
+              <Text color='white'>
+                <FormattedMessage {...SecurityIntl.PublicDomain} />
+              </Text>
             </th>
             <th>
-              <FormattedMessage {...SecurityIntl.PrivateIp} />
+              <Text color='white'>
+                <FormattedMessage {...SecurityIntl.PrivateIp} />
+              </Text>
             </th>
             <th>
-              <FormattedMessage {...CommonIntl.Status} />
+              <Text color='white'>
+                <FormattedMessage {...CommonIntl.Status} />
+              </Text>
             </th>
             <th>
-              <FormattedMessage {...SecurityIntl.DetectionStatus} />
+              <Text color='white'>
+                <FormattedMessage {...SecurityIntl.DetectionStatus} />
+              </Text>
             </th>
             <th>
-              <FormattedMessage {...SecurityIntl.Actions} />
+              <Text color='white'>
+                <FormattedMessage {...SecurityIntl.Actions} />
+              </Text>
             </th>
           </tr>
         </thead>
@@ -189,20 +217,23 @@ class CamerasTableComponent extends Component {
   }
 
   handleToggleDetectionStatus = cameraId => {
-    if (!this.props.toggleDetectionIsLoading) {
-      this.props.toggleDetection(cameraId);
+    const { toggleDetectionIsLoading, toggleDetection } = this.props;
+    if (!toggleDetectionIsLoading) {
+      toggleDetection(cameraId);
       this.setState({ currentToggleCameraId: cameraId });
     }
   };
 
   handleDeleteButtonClick = cameraId => {
-    if (!this.props.deleteCameraIsLoading) {
+    const { deleteCameraIsLoading } = this.props;
+    if (!deleteCameraIsLoading) {
       this.setState({ cameraIdToDelete: cameraId });
     }
   };
 
   handleDeleteYesClick = cameraId => {
-    this.props.deleteCamera(cameraId);
+    const { deleteCamera } = this.props;
+    deleteCamera(cameraId);
   };
 
   handleDeleteNoClick = () => {

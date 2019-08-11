@@ -13,6 +13,7 @@ export default styled.div`
   cursor: ${props => (props.clickable ? 'pointer' : 'not-allowed')};
   ${props => (props.active ? 'font-weight: 500;' : '')}
   color: ${props => (props.active ? 'white' : 'black')};
+  flex: 1;
 
   &:hover {
     background: rgba(0, 0, 0, 0.125);

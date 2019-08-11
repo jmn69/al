@@ -12,10 +12,10 @@ const mapStateToProps = state => {
     error: toggleDetectionError,
   } = state.security.toggleDetectionCamera;
   return {
-    toggleDetectionIsLoading: toggleDetectionIsLoading,
-    toggleDetectionError: toggleDetectionError,
-    deleteCameraIsLoading: deleteCameraIsLoading,
-    deleteCameraError: deleteCameraError,
+    toggleDetectionIsLoading,
+    toggleDetectionError,
+    deleteCameraIsLoading,
+    deleteCameraError,
   };
 };
 

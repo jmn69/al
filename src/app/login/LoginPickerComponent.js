@@ -1,19 +1,19 @@
 import React, { Component, Fragment } from 'react';
-import { Box, Flex } from 'grid-styled';
+import { Box, Flex } from '@rebass/grid';
 import { compose } from 'redux';
-import { injectIntl } from 'react-intl';
+import { injectIntl, FormattedMessage } from 'react-intl';
 import { withTheme } from 'styled-components';
 import T from 'prop-types';
-import { FormattedMessage } from 'react-intl';
 
-import LoginIntl from './Login.i';
 import Modal from 'Common/components/Modal';
 import { ModalHeader, ModalContent } from 'Common/components/Modal.s';
 import { getUsers } from 'Common/utils/localStorage';
 import ListGroup from 'Common/components/ListGroup';
+import Text from 'Common/components/Text';
 import ListItem from 'Common/components/ListItem';
 import Circle from 'Common/components/Circle';
 import PatternLock from 'Common/components/PatternLock';
+import LoginIntl from './Login.i';
 import { UserNameLabel, PatternContainer } from './Login.s';
 
 class LoginPickerComponent extends Component {
@@ -23,6 +23,14 @@ class LoginPickerComponent extends Component {
     login: T.func,
     error: T.any,
     isLoading: T.bool,
+  };
+
+  static defaultProps = {
+    theme: null,
+    intl: null,
+    login: () => {},
+    error: null,
+    isLoading: false,
   };
 
   state = {
@@ -41,21 +49,23 @@ class LoginPickerComponent extends Component {
         <ListItem
           key={user.id}
           clickable
-          justify="flex-start"
-          padding="1rem 1.25rem"
+          justify='flex-start'
+          padding='1rem 1.25rem'
           onClick={() => this.setState({ isOpen: true, currentUser: user })}
         >
           <Circle size={60}>
             {user.username.substring(0, 1).toUpperCase()}
           </Circle>
-          <UserNameLabel>{user.username}</UserNameLabel>
+          <UserNameLabel>
+            <Text size='large'>{user.username}</Text>
+          </UserNameLabel>
         </ListItem>
       ));
 
     return (
       <Fragment>
-        <Flex width="100%" alignItems="center" justifyContent="center">
-          <Box width="30%">
+        <Flex width='100%' alignItems='center' justifyContent='center'>
+          <Box width='33%'>
             <ListGroup>{listItems}</ListGroup>
           </Box>
         </Flex>
@@ -72,9 +82,9 @@ class LoginPickerComponent extends Component {
                 size={3}
                 connectorWidth={4}
                 onChange={this.checkPattern}
-                pointColor={theme.third}
-                errorColor={theme.accent}
-                connectorColor={theme.primary}
+                pointColor={theme.colors.third}
+                errorColor={theme.colors.accent}
+                connectorColor={theme.colors.primary}
               />
               <div>{error}</div>
               <div>{isLoading ? 'Loading' : ''}</div>
@@ -90,8 +100,10 @@ class LoginPickerComponent extends Component {
   };
 
   checkPattern = pattern => {
-    return this.props.login({
-      username: this.state.currentUser.username,
+    const { login } = this.props;
+    const { currentUser } = this.state;
+    return login({
+      username: currentUser.username,
       password: pattern.join('-'),
     });
   };

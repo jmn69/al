@@ -1,5 +1,6 @@
 import T from 'prop-types';
 
+/* eslint-disable import/prefer-default-export */
 export const cameraType = T.shape({
   _id: T.string.isRequired,
   name: T.string.isRequired,

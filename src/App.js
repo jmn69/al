@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { AppContainer, Container } from './App.s';
-import Route from 'react-router-dom/Route';
-import Switch from 'react-router-dom/Switch';
-import Redirect from 'react-router-dom/Redirect';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import Menu from './app/menu/Menu';
 import Toolbar from './app/toolbar/ToolbarContainer';
-import { ToastContainer } from 'react-toastify';
+import { AppContainer, Container } from './App.s';
 
 import DashboardContainer from './app/dashboard/DashboardContainer';
 import SecurityContainer from './app/security/SecurityContainer';
@@ -33,12 +31,12 @@ export default class App extends Component {
         <AppContainer>
           <ToastContainer autoClose={false} />
           <Switch>
-            <Route exact path="/" component={DashboardContainer} />
-            <Route path="/security" component={SecurityContainer} />
-            <Route path="/settings" component={SettingsContainer} />
+            <Route exact path='/' component={DashboardContainer} />
+            <Route path='/security' component={SecurityContainer} />
+            <Route path='/settings' component={SettingsContainer} />
 
-            <Route path="/404" component={NotFound} />
-            <Route path="*" render={() => <Redirect to="/404" />} />
+            <Route path='/404' component={NotFound} />
+            <Route path='*' render={() => <Redirect to='/404' />} />
           </Switch>
         </AppContainer>
       </Container>

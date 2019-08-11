@@ -10,6 +10,13 @@ export default class Select extends Component {
     touched: T.bool,
   };
 
+  static defaultProps = {
+    label: '',
+    required: false,
+    error: null,
+    touched: false,
+  };
+
   render() {
     const { error, touched, ...rest } = this.props;
 
@@ -17,7 +24,7 @@ export default class Select extends Component {
       <Fragment>
         {this.renderLabel()}
         <SelectStyled
-          classNamePrefix="react-select"
+          classNamePrefix='react-select'
           error={!!error && touched}
           {...rest}
         />

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import LoginFormComponent from './LoginFormComponent';
-import { login } from './redux/operations';
+import loginOperations from './redux/operations';
 
 const mapStateToProps = state => {
   const { error, isLoading } = state.login;
@@ -12,7 +12,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    login: formData => dispatch(login(formData)),
+    login: formData => dispatch(loginOperations.login(formData)),
   };
 };
 

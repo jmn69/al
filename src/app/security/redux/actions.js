@@ -1,4 +1,4 @@
-import types from './types.js';
+import types from './types';
 
 const setSecurityMod = mod => ({
   type: types.SET_SECURITY_MOD,

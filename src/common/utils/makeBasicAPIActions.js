@@ -13,9 +13,9 @@ export const createErrorCreator = type => {
 };
 
 export default (baseName, factory) => {
-  const REQUEST = baseName + '_REQUEST';
-  const SUCCESS = baseName + '_SUCCESS';
-  const FAILURE = baseName + '_FAILURE';
+  const REQUEST = `${baseName}_REQUEST`;
+  const SUCCESS = `${baseName}_SUCCESS`;
+  const FAILURE = `${baseName}_FAILURE`;
   const request = createActionCreator(REQUEST);
   const success = createActionCreator(SUCCESS);
   const failure = createErrorCreator(FAILURE);

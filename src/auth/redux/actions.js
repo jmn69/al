@@ -1,4 +1,4 @@
-import types from './types.js';
+import types from './types';
 
 export const setIsAuthenticated = isAuth => ({
   type: types.SET_IS_AUTHENTICATED,

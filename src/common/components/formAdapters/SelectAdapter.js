@@ -1,7 +1,7 @@
 import React from 'react';
+import T from 'prop-types';
 import { FieldError, FormInputContainer } from './FormAdapters.s';
 import Select from '../Select/Select';
-import T from 'prop-types';
 
 const SelectAdapter = ({
   input: { onChange, value },
@@ -36,6 +36,13 @@ SelectAdapter.propTypes = {
   meta: T.any,
   onError: T.func,
   options: T.any,
+};
+
+SelectAdapter.defaultProps = {
+  input: null,
+  meta: null,
+  onError: null,
+  options: null,
 };
 
 export default SelectAdapter;

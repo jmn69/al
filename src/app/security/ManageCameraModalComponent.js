@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Box, Flex } from 'grid-styled';
+import { Box, Flex } from '@rebass/grid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 import T from 'prop-types';
@@ -7,8 +7,6 @@ import { FormattedMessage, injectIntl } from 'react-intl';
 
 import { withTheme } from 'styled-components';
 import { compose } from 'redux';
-import SecurityIntl from './Security.i';
-import { FormContainer, FormField } from './Security.s';
 import Modal from 'Common/components/Modal';
 import { Form, Field } from 'react-final-form';
 import Button from 'Common/components/Button';
@@ -21,6 +19,8 @@ import {
 import CommonIntl from 'Common/CommonTrad.i';
 import InputAdapter from 'Common/components/formAdapters/InputAdapter';
 import SelectAdapter from 'Common/components/formAdapters/SelectAdapter';
+import { FormContainer, FormField } from './Security.s';
+import SecurityIntl from './Security.i';
 
 const cameraTypeToSelectOption = intl => {
   return [
@@ -39,6 +39,13 @@ class ManageCameraModalComponent extends Component {
     createCameraIsLoading: T.bool,
     createCameraError: T.any,
     createCamera: T.func,
+  };
+
+  static defaultProps = {
+    theme: null,
+    createCameraIsLoading: false,
+    createCameraError: null,
+    createCamera: () => {},
   };
 
   componentDidUpdate(prevProps) {
@@ -130,31 +137,31 @@ class ManageCameraModalComponent extends Component {
               }
               return errors;
             }}
-            render={({ handleSubmit, values, mutators }) => (
-              <FormContainer id="manageCameraForm" onSubmit={handleSubmit}>
+            render={({ handleSubmit }) => (
+              <FormContainer id='manageCameraForm' onSubmit={handleSubmit}>
                 <Flex
-                  alignItems="center"
-                  justifyContent="space-around"
-                  flexWrap="wrap"
+                  alignItems='center'
+                  justifyContent='space-around'
+                  flexWrap='wrap'
                 >
-                  <Box width="45%">
+                  <Box width='45%'>
                     <FormField>
                       <Field
                         required
-                        name="name"
+                        name='name'
                         component={InputAdapter}
                         label={intl.formatMessage(CommonIntl.Name)}
-                        type="text"
+                        type='text'
                         placeholder={intl.formatMessage(
                           CommonIntl.NamePlaceholder
                         )}
                       />
                     </FormField>
                   </Box>
-                  <Box width="45%">
+                  <Box width='45%'>
                     <FormField>
                       <Field
-                        name="type"
+                        name='type'
                         required
                         component={SelectAdapter}
                         options={cameraTypeToSelectOption(intl)}
@@ -165,76 +172,76 @@ class ManageCameraModalComponent extends Component {
                       />
                     </FormField>
                   </Box>
-                  <Box width="45%">
+                  <Box width='45%'>
                     <FormField>
                       <Field
                         required
-                        name="publicDomain"
+                        name='publicDomain'
                         component={InputAdapter}
                         label={intl.formatMessage(SecurityIntl.PublicDomain)}
-                        type="text"
+                        type='text'
                         placeholder={intl.formatMessage(
                           SecurityIntl.PublicDomainPlaceholder
                         )}
                       />
                     </FormField>
                   </Box>
-                  <Box width="45%">
+                  <Box width='45%'>
                     <FormField>
                       <Field
                         required
-                        name="privateIp"
+                        name='privateIp'
                         component={InputAdapter}
                         label={intl.formatMessage(SecurityIntl.PrivateIp)}
-                        type="text"
+                        type='text'
                         placeholder={intl.formatMessage(
                           SecurityIntl.PrivateIpPlaceholder
                         )}
                       />
                     </FormField>
                   </Box>
-                  <Box width="45%">
+                  <Box width='45%'>
                     <FormField>
                       <Field
                         required
-                        name="user"
+                        name='user'
                         component={InputAdapter}
                         label={intl.formatMessage(CommonIntl.User)}
-                        type="text"
+                        type='text'
                         placeholder={intl.formatMessage(
                           CommonIntl.UserPlaceholder
                         )}
                       />
                     </FormField>
                   </Box>
-                  <Box width="45%">
+                  <Box width='45%'>
                     <FormField>
                       <Field
                         required
-                        name="pwd"
+                        name='pwd'
                         component={InputAdapter}
                         label={intl.formatMessage(CommonIntl.Pwd)}
-                        type="password"
+                        type='password'
                         placeholder={intl.formatMessage(
                           CommonIntl.PwdPlaceholder
                         )}
                       />
                     </FormField>
                   </Box>
-                  <Box width="45%">
+                  <Box width='45%'>
                     <FormField>
                       <Field
-                        name="wsStreamUrl"
+                        name='wsStreamUrl'
                         component={InputAdapter}
                         label={intl.formatMessage(SecurityIntl.WsStreamUrl)}
-                        type="text"
+                        type='text'
                         placeholder={intl.formatMessage(
                           SecurityIntl.WsStreamUrlPlaceholder
                         )}
                       />
                     </FormField>
                   </Box>
-                  <Box width="45%" />
+                  <Box width='45%' />
                 </Flex>
               </FormContainer>
             )}
@@ -243,29 +250,26 @@ class ManageCameraModalComponent extends Component {
         <ModalFooter>
           <ButtonOutline
             hover={{
-              color: theme.white,
-              backgroundColor: theme.third,
+              color: theme.colors.white,
+              backgroundColor: theme.colors.third,
             }}
-            color={theme.third}
+            color={theme.colors.third}
             onClick={onCancel}
-            children={intl.formatMessage(CommonIntl.Cancel)}
-          />
+          >
+            <FormattedMessage {...CommonIntl.Cancel} />
+          </ButtonOutline>
           &nbsp;&nbsp;
-          <Button
-            bg={theme.accent}
-            onClick={this.handleCreate}
-            children={
-              <Fragment>
-                <FormattedMessage {...CommonIntl.Create} />
-                {createCameraIsLoading ? (
-                  <Fragment>
-                    &nbsp; &nbsp;
-                    <FontAwesomeIcon spin size="1x" icon={faCircleNotch} />
-                  </Fragment>
-                ) : null}
-              </Fragment>
-            }
-          />
+          <Button bg={theme.colors.accent} onClick={this.handleCreate}>
+            <Fragment>
+              <FormattedMessage {...CommonIntl.Create} />
+              {createCameraIsLoading ? (
+                <Fragment>
+                  &nbsp; &nbsp;
+                  <FontAwesomeIcon spin size='1x' icon={faCircleNotch} />
+                </Fragment>
+              ) : null}
+            </Fragment>
+          </Button>
         </ModalFooter>
       </Modal>
     );
@@ -279,7 +283,8 @@ class ManageCameraModalComponent extends Component {
   };
 
   handleSubmit = values => {
-    this.props.createCamera(values);
+    const { createCamera } = this.props;
+    createCamera(values);
   };
 }
 

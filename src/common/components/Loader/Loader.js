@@ -2,15 +2,15 @@ import React from 'react';
 import T from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
-import { LoaderContainer } from './Loader.s';
 import { withTheme } from 'styled-components';
+import LoaderContainer from './Loader.s';
 
-const Loader = props => (
-  <LoaderContainer fullPage={props.fullPage}>
+const Loader = ({ fullPage, size, color, theme }) => (
+  <LoaderContainer fullPage={fullPage}>
     <FontAwesomeIcon
       spin
-      size={props.fullPage ? '3x' : props.size}
-      color={props.color ? props.color : props.theme.accent}
+      size={fullPage ? '3x' : size}
+      color={color || theme.colors.accent}
       icon={faCircleNotch}
     />
   </LoaderContainer>

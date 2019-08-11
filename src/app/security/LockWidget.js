@@ -10,16 +10,16 @@ import {
   ModalContent,
   ModalFooter,
 } from 'Common/components/Modal.s';
-import { CardContent, IconWrapper } from './Security.s';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLock, faUnlock } from '@fortawesome/free-solid-svg-icons';
 import T from 'prop-types';
 import { FormattedMessage, injectIntl } from 'react-intl';
-import { Box } from 'grid-styled';
+import { Box } from '@rebass/grid';
 import { withTheme } from 'styled-components';
 
-import LockWidgetIntl from './LockWidget.i';
 import CommonIntl from 'Common/CommonTrad.i';
+import LockWidgetIntl from './LockWidget.i';
+import { CardContent, IconWrapper } from './Security.s';
 
 class LockWidget extends Component {
   static propTypes = {
@@ -29,27 +29,20 @@ class LockWidget extends Component {
     intl: T.any,
   };
 
+  static defaultProps = {
+    theme: null,
+    intl: null,
+  };
+
   state = { isOpen: false, intervalId: null, currentCount: 30 };
 
   componentWillUnmount = () => {
-    clearInterval(this.state.intervalId);
-  };
-
-  timer = () => {
-    const { currentCount, intervalId } = this.state;
-    const { setSecurityMod, lock } = this.props;
-    const newCount = currentCount - 1;
-    if (newCount >= 0) {
-      this.setState({ currentCount: newCount });
-    } else {
-      clearInterval(intervalId);
-      this.setState({ isOpen: false });
-      setSecurityMod(!lock);
-    }
+    const { intervalId } = this.state;
+    clearInterval(intervalId);
   };
 
   render() {
-    const { lock, theme, intl } = this.props;
+    const { lock, theme } = this.props;
     const { isOpen, currentCount } = this.state;
 
     const background = lock
@@ -67,11 +60,15 @@ class LockWidget extends Component {
           <CardContent>
             <Box width={2 / 5}>
               <IconWrapper>
-                <FontAwesomeIcon color={iconColor} size="5x" icon={icon} />
+                <FontAwesomeIcon color={iconColor} size='5x' icon={icon} />
               </IconWrapper>
             </Box>
             <Box width={3 / 5}>
-              <Text color={theme.darkGray} textAlign="center" fontSize="title">
+              <Text
+                color={theme.colors.darkGray}
+                textAlign='center'
+                size='title'
+              >
                 <FormattedMessage {...message} />
               </Text>
             </Box>
@@ -82,7 +79,7 @@ class LockWidget extends Component {
             <FormattedMessage {...LockWidgetIntl.ModalTitle} />
           </ModalHeader>
           <ModalContent>
-            <Text fontSize="title" textAlign="center">
+            <Text size='title' textAlign='center'>
               <FormattedMessage
                 {...LockWidgetIntl.ModalContent}
                 values={{ seconds: currentCount }}
@@ -90,50 +87,67 @@ class LockWidget extends Component {
             </Text>
           </ModalContent>
           <ModalFooter>
-            <Button
-              bg={theme.accent}
-              onClick={this.handleCancel}
-              children={intl.formatMessage(CommonIntl.Cancel)}
-            />
+            <Button bg={theme.colors.accent} onClick={this.handleCancel}>
+              <FormattedMessage {...CommonIntl.Cancel} />
+            </Button>
             &nbsp;&nbsp;
             <ButtonOutline
               hover={{
-                color: theme.white,
-                backgroundColor: theme.third,
+                color: theme.colors.white,
+                backgroundColor: theme.colors.third,
               }}
-              color={theme.third}
+              color={theme.colors.third}
               onClick={this.handleActivateNow}
-              children={intl.formatMessage(CommonIntl.ActivateNow)}
-            />
+            >
+              <FormattedMessage {...CommonIntl.ActivateNow} />
+            </ButtonOutline>
           </ModalFooter>
         </Modal>
       </Fragment>
     );
   }
 
+  timer = () => {
+    const { currentCount, intervalId } = this.state;
+    const { setSecurityMod, lock } = this.props;
+    const newCount = currentCount - 1;
+    if (newCount >= 0) {
+      this.setState({ currentCount: newCount });
+    }
+ else {
+      clearInterval(intervalId);
+      this.setState({ isOpen: false });
+      setSecurityMod(!lock);
+    }
+  };
+
   handleModalClose = () => {
-    this.setState({ isOpen: false });
-    clearInterval(this.state.intervalId);
+    this.closeAndClear();
   };
 
   handleCancel = () => {
-    this.setState({ isOpen: false });
-    clearInterval(this.state.intervalId);
+    this.closeAndClear();
   };
 
   handleActivateNow = () => {
     const { lock, setSecurityMod } = this.props;
-    this.setState({ isOpen: false });
+    this.closeAndClear();
     setSecurityMod(!lock);
-    clearInterval(this.state.intervalId);
+  };
+
+  closeAndClear = () => {
+    const { intervalId } = this.state;
+    this.setState({ isOpen: false });
+    clearInterval(intervalId);
   };
 
   handleSecurityModClick = () => {
     const { lock, setSecurityMod } = this.props;
     if (!lock) {
       const intervalId = setInterval(this.timer, 1000);
-      this.setState({ isOpen: true, currentCount: 30, intervalId: intervalId });
-    } else {
+      this.setState({ isOpen: true, currentCount: 30, intervalId });
+    }
+ else {
       setSecurityMod(!lock);
     }
   };

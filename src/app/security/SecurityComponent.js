@@ -1,13 +1,21 @@
 import React, { Component, Fragment } from 'react';
-import { Box, Flex } from 'grid-styled';
+import { Box, Flex } from '@rebass/grid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCamera, faImage } from '@fortawesome/free-solid-svg-icons';
 import T from 'prop-types';
 import { compose } from 'redux';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import { withTheme } from 'styled-components';
-import { cameraType } from './types';
 
+import Card from 'Common/components/Card';
+import ListGroup from 'Common/components/ListGroup';
+import ListItem from 'Common/components/ListItem';
+import Loader from 'Common/components/Loader';
+import Button from 'Common/components/Button';
+import Text from 'Common/components/Text';
+import CamerasTableContainer from './CamerasTableContainer';
+import LockWidget from './LockWidget';
+import SecurityIntl from './Security.i';
 import {
   CardContent,
   IconWrapper,
@@ -17,16 +25,10 @@ import {
   CameraAlertWrapper,
   ImageAlertWrapper,
   CardHeaderWrapper,
+  CardHeaderAlerts,
+  CardAlertsContent,
 } from './Security.s';
-import SecurityIntl from './Security.i';
-import LockWidget from './LockWidget';
-import CamerasTableContainer from './CamerasTableContainer';
-import Card from 'Common/components/Card';
-import ListGroup from 'Common/components/ListGroup';
-import ListItem from 'Common/components/ListItem';
-import Loader from 'Common/components/Loader';
-import Button from 'Common/components/Button';
-import Text from 'Common/components/Text';
+import { cameraType } from './types';
 import ManageCameraModalContainer from './ManageCameraModalContainer';
 
 class SecurityComponent extends Component {
@@ -42,10 +44,16 @@ class SecurityComponent extends Component {
     intl: T.any.isRequired,
   };
 
+  static defaultProps = {
+    error: null,
+    cameras: [],
+  };
+
   state = { isOpen: false, initialRenderComplete: false };
 
   componentDidMount() {
-    this.props.fetchCameras();
+    const { fetchCameras } = this.props;
+    fetchCameras();
   }
 
   componentDidUpdate(prevProps) {
@@ -66,7 +74,7 @@ class SecurityComponent extends Component {
         {!initialRenderComplete ? (
           <Loader fullPage />
         ) : (
-          <Flex justifyContent="center">
+          <Flex justifyContent='center'>
             <Box width={9 / 10}>
               <Flex mb={4}>
                 <Box px={2} width={1 / 3}>
@@ -78,17 +86,17 @@ class SecurityComponent extends Component {
                       <Box width={2 / 5}>
                         <IconWrapper>
                           <FontAwesomeIcon
-                            color="gray"
-                            size="5x"
+                            color='gray'
+                            size='5x'
                             icon={faCamera}
                           />
                         </IconWrapper>
                       </Box>
                       <Box width={3 / 5}>
                         <Text
-                          color={theme.darkGray}
-                          textAlign="center"
-                          fontSize="title"
+                          color={theme.colors.darkGray}
+                          textAlign='center'
+                          size='title'
                         >
                           <FormattedMessage {...SecurityIntl.SeeTheCameras} />
                         </Text>
@@ -98,58 +106,51 @@ class SecurityComponent extends Component {
                 </Box>
                 <Box px={2} width={1 / 3}>
                   <Card>
-                    <Box width={2 / 5}>
-                      <CardTitle>
-                        <Text>
-                          <FormattedMessage {...SecurityIntl.LatestAlerts} />
-                        </Text>
-                      </CardTitle>
-                    </Box>
-                    <CardContent alignItems="flex-start" withTitle>
+                    <CardHeaderAlerts>
+                      <Box width={3 / 5}>
+                        <CardTitle>
+                          <Text size='large'>
+                            <FormattedMessage {...SecurityIntl.LatestAlerts} />
+                          </Text>
+                        </CardTitle>
+                      </Box>
+                    </CardHeaderAlerts>
+                    <CardAlertsContent alignItems='flex-start' withTitle>
                       <ListWrapper>
                         <ListGroup>
-                          <ListItem padding="0.5rem 1.25rem">
+                          <ListItem padding='0.5rem 1.25rem'>
                             <DateAlertWrapper>
-                              10/09/18 à 10:00:34
+                              <Text color='white'>10/09/18 à 10:00:34</Text>
                             </DateAlertWrapper>
-                            <CameraAlertWrapper>Camera 1</CameraAlertWrapper>
+                            <CameraAlertWrapper>
+                              <Text>Camera 1</Text>
+                            </CameraAlertWrapper>
                             <ImageAlertWrapper>
                               <FontAwesomeIcon
-                                color="gray"
-                                size="2x"
+                                color='gray'
+                                size='2x'
                                 icon={faImage}
                               />
                             </ImageAlertWrapper>
                           </ListItem>
-                          <ListItem padding="0.5rem 1.25rem">
+                          <ListItem padding='0.5rem 1.25rem'>
                             <DateAlertWrapper>
-                              10/09/18 à 09:58:45
+                              <Text color='white'>07/09/18 à 11:03:20</Text>
                             </DateAlertWrapper>
-                            <CameraAlertWrapper>Camera 1</CameraAlertWrapper>
+                            <CameraAlertWrapper>
+                              <Text>Camera 2</Text>
+                            </CameraAlertWrapper>
                             <ImageAlertWrapper>
                               <FontAwesomeIcon
-                                color="gray"
-                                size="2x"
-                                icon={faImage}
-                              />
-                            </ImageAlertWrapper>
-                          </ListItem>
-                          <ListItem padding="0.5rem 1.25rem">
-                            <DateAlertWrapper>
-                              07/09/18 à 11:03:20
-                            </DateAlertWrapper>
-                            <CameraAlertWrapper>Camera 2</CameraAlertWrapper>
-                            <ImageAlertWrapper>
-                              <FontAwesomeIcon
-                                color="gray"
-                                size="2x"
+                                color='gray'
+                                size='2x'
                                 icon={faImage}
                               />
                             </ImageAlertWrapper>
                           </ListItem>
                         </ListGroup>
                       </ListWrapper>
-                    </CardContent>
+                    </CardAlertsContent>
                   </Card>
                 </Box>
               </Flex>
@@ -157,10 +158,10 @@ class SecurityComponent extends Component {
                 <Box mb={20} px={2} width={1}>
                   <Card>
                     <CardHeaderWrapper>
-                      <Flex justifyContent="space-between">
+                      <Flex justifyContent='space-between'>
                         <Box width={1 / 7}>
                           <CardTitle>
-                            <Text>
+                            <Text size='large'>
                               <FormattedMessage
                                 {...SecurityIntl.ListOfCameras}
                               />
@@ -169,11 +170,11 @@ class SecurityComponent extends Component {
                           </CardTitle>
                         </Box>
                         <Button
-                          bg={theme.primary}
-                          size="small"
-                          children="Nouveau"
+                          bg={theme.colors.primary}
                           onClick={this.handleNewCameraClick}
-                        />
+                        >
+                          Nouveau
+                        </Button>
                       </Flex>
                     </CardHeaderWrapper>
                     <CamerasTableContainer
@@ -196,6 +197,7 @@ class SecurityComponent extends Component {
   }
 
   handleEditClick = cameraId => {
+    /* eslint-disable no-console */
     console.log(cameraId);
   };
 

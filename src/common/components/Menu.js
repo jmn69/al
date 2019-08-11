@@ -15,7 +15,7 @@ export default styled(Menu)`
 
   /* General sidebar styles */
   .bm-menu {
-    background: ${props => props.theme.white};
+    background: ${props => props.theme.colors.white};
     padding: 2.5em 1.5em 0;
     font-size: 1.15em;
   }

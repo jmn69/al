@@ -4,19 +4,24 @@ import { Redirect } from 'react-router-dom';
 
 import Loader from 'Common/components/Loader';
 import { getUsers } from 'Common/utils/localStorage';
+import { ToastContainer } from 'react-toastify';
 import { Container, ContentContainer } from './Login.s';
 import LoginFormContainer from './LoginFormContainer';
 import LoginPickerContainer from './LoginPickerContainer';
-import { ToastContainer } from 'react-toastify';
 
 export default class Login extends Component {
   static propTypes = {
-    theme: T.any,
-    intl: T.any,
     authCheckIsLoading: T.bool,
     isAuthenticated: T.bool,
     hasInit: T.bool,
     authCheck: T.func,
+  };
+
+  static defaultProps = {
+    authCheckIsLoading: false,
+    isAuthenticated: false,
+    hasInit: false,
+    authCheck: () => {},
   };
 
   state = {
@@ -24,29 +29,27 @@ export default class Login extends Component {
   };
 
   async componentDidMount() {
-    await this.props.authCheck();
+    const { authCheck } = this.props;
+    await authCheck();
   }
 
   render() {
     const { isAuthenticated, hasInit, authCheckIsLoading } = this.props;
+    const { userFound } = this.state;
 
     if (authCheckIsLoading || !hasInit) {
       return <Loader fullPage />;
     }
 
     if (isAuthenticated) {
-      return <Redirect to="/" />;
+      return <Redirect to='/' />;
     }
 
     return (
       <Container>
         <ToastContainer autoClose={false} />
         <ContentContainer>
-          {this.state.userFound ? (
-            <LoginPickerContainer />
-          ) : (
-            <LoginFormContainer />
-          )}
+          {userFound ? <LoginPickerContainer /> : <LoginFormContainer />}
         </ContentContainer>
       </Container>
     );

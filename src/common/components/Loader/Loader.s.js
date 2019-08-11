@@ -12,4 +12,4 @@ LoaderContainer.propTypes = {
   fullPage: T.bool,
 };
 
-export { LoaderContainer };
+export default LoaderContainer;

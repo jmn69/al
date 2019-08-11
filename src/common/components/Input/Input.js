@@ -26,24 +26,27 @@ export default class Input extends Component {
     onClick: T.func,
   };
 
-  state = {
-    currentCharactersNumber: this.props.value ? this.props.value.length : 0,
+  static defaultProps = {
+    onChange: () => {},
+    onFocus: () => {},
+    onBlur: () => {},
+    value: '',
+    name: '',
+    id: '',
+    type: '',
+    charactersMax: null,
+    label: '',
+    required: false,
+    error: null,
+    touched: false,
+    onClick: () => {},
+    placeholder: '',
+    readOnly: false,
   };
 
-  handleChange = e => {
-    const { onChange, charactersMax } = this.props;
-
-    // if there is a max character constraint on the field, we
-    // call onChange method only if it has not been reached
-    if (charactersMax) {
-      const currentCharactersNumber = e.target.value.length;
-      if (currentCharactersNumber <= charactersMax) {
-        this.setState({ currentCharactersNumber: currentCharactersNumber });
-        onChange(e);
-      }
-    } else {
-      onChange(e);
-    }
+  state = {
+    /* eslint-disable-next-line react/destructuring-assignment */
+    currentCharactersNumber: this.props.value ? this.props.value.length : 0,
   };
 
   render() {
@@ -83,6 +86,23 @@ export default class Input extends Component {
       </Fragment>
     );
   }
+
+  handleChange = e => {
+    const { onChange, charactersMax } = this.props;
+
+    // if there is a max character constraint on the field, we
+    // call onChange method only if it has not been reached
+    if (charactersMax) {
+      const currentCharactersNumber = e.target.value.length;
+      if (currentCharactersNumber <= charactersMax) {
+        this.setState({ currentCharactersNumber });
+        onChange(e);
+      }
+    }
+ else {
+      onChange(e);
+    }
+  };
 
   renderLabel() {
     const { label, required } = this.props;

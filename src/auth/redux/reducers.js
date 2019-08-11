@@ -1,4 +1,4 @@
-import types from './types.js';
+import types from './types';
 
 const INITIAL_STATE = {
   isAuthenticated: false,

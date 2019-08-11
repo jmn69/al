@@ -8,8 +8,8 @@ const mapStateToProps = state => {
     error: createCameraError,
   } = state.security.createCamera;
   return {
-    createCameraIsLoading: createCameraIsLoading,
-    createCameraError: createCameraError,
+    createCameraIsLoading,
+    createCameraError,
   };
 };
 

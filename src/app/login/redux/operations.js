@@ -6,7 +6,7 @@ import history from '../../../history';
 const login = makeBasicAPIActions(
   'LOGIN',
   (request, success, failure) => formData => {
-    return async (dispatch, getState) => {
+    return async dispatch => {
       dispatch(request());
       let response;
       try {
@@ -17,7 +17,8 @@ const login = makeBasicAPIActions(
           },
           body: JSON.stringify(formData),
         });
-      } catch (error) {
+      }
+ catch (error) {
         dispatch(failure(error));
         return Promise.reject();
       }
@@ -31,14 +32,17 @@ const login = makeBasicAPIActions(
           // TODO: Redirect to initial url if there is one
           history.push('/');
           return Promise.resolve();
-        } catch (error) {
+        }
+ catch (error) {
           dispatch(failure(error));
           return Promise.reject();
         }
-      } else if (response.status === 404) {
+      }
+ else if (response.status === 404) {
         dispatch(failure('The username and password do not match'));
         return Promise.reject();
-      } else {
+      }
+ else {
         dispatch(failure('Something went wrong'));
         return Promise.reject();
       }
@@ -46,4 +50,4 @@ const login = makeBasicAPIActions(
   }
 );
 
-export { login };
+export default { login };

@@ -1,18 +1,19 @@
-import Creators from './actions';
 import makeBasicAPIActions from 'Common/utils/makeBasicAPIActions';
 import { request as apiRequest } from 'Common/utils/authRequest';
+import Creators from './actions';
 
 const setSecurityMod = Creators.setSecurityMod;
 
 const fetchCameras = makeBasicAPIActions(
   'FETCH_CAMERAS',
-  (request, success, failure) => formData => {
-    return async (dispatch, getState) => {
+  (request, success, failure) => () => {
+    return async dispatch => {
       dispatch(request());
       let response;
       try {
         response = await apiRequest({ endpoint: `cameras` });
-      } catch (error) {
+      }
+ catch (error) {
         dispatch(failure(error));
         return Promise.reject();
       }
@@ -22,11 +23,13 @@ const fetchCameras = makeBasicAPIActions(
           const cameras = await response.json();
           dispatch(success(cameras));
           return Promise.resolve();
-        } catch (error) {
+        }
+ catch (error) {
           dispatch(failure(error));
           return Promise.reject();
         }
-      } else {
+      }
+ else {
         dispatch(failure('Something went wrong'));
         return Promise.reject();
       }
@@ -37,7 +40,7 @@ const fetchCameras = makeBasicAPIActions(
 const createCamera = makeBasicAPIActions(
   'CREATE_CAMERA',
   (request, success, failure) => formData => {
-    return async (dispatch, getState) => {
+    return async dispatch => {
       dispatch(request());
       let response;
       try {
@@ -46,7 +49,8 @@ const createCamera = makeBasicAPIActions(
           method: 'POST',
           body: JSON.stringify(formData),
         });
-      } catch (error) {
+      }
+ catch (error) {
         dispatch(failure(error));
         return Promise.reject();
       }
@@ -57,11 +61,13 @@ const createCamera = makeBasicAPIActions(
           dispatch(success(camera));
           dispatch(fetchCameras());
           return Promise.resolve();
-        } catch (error) {
+        }
+ catch (error) {
           dispatch(failure(error));
           return Promise.reject();
         }
-      } else {
+      }
+ else {
         dispatch(failure('Something went wrong'));
         return Promise.reject();
       }
@@ -72,7 +78,7 @@ const createCamera = makeBasicAPIActions(
 const deleteCamera = makeBasicAPIActions(
   'DELETE_CAMERA',
   (request, success, failure) => cameraId => {
-    return async (dispatch, getState) => {
+    return async dispatch => {
       dispatch(request());
       let response;
       try {
@@ -80,7 +86,8 @@ const deleteCamera = makeBasicAPIActions(
           endpoint: `cameras/${cameraId}`,
           method: 'DELETE',
         });
-      } catch (error) {
+      }
+ catch (error) {
         dispatch(failure(error));
         return Promise.reject();
       }
@@ -91,11 +98,13 @@ const deleteCamera = makeBasicAPIActions(
           dispatch(success(camera));
           dispatch(fetchCameras());
           return Promise.resolve();
-        } catch (error) {
+        }
+ catch (error) {
           dispatch(failure(error));
           return Promise.reject();
         }
-      } else {
+      }
+ else {
         dispatch(failure('Something went wrong'));
         return Promise.reject();
       }
@@ -106,14 +115,15 @@ const deleteCamera = makeBasicAPIActions(
 const toggleDetection = makeBasicAPIActions(
   'TOGGLE_DETECTION_CAMERA',
   (request, success, failure) => cameraId => {
-    return async (dispatch, getState) => {
+    return async dispatch => {
       dispatch(request());
       let response;
       try {
         response = await apiRequest({
           endpoint: `cameras/${cameraId}/toggle-detection`,
         });
-      } catch (error) {
+      }
+ catch (error) {
         dispatch(failure(error));
         return Promise.reject();
       }
@@ -123,11 +133,13 @@ const toggleDetection = makeBasicAPIActions(
           dispatch(success());
           dispatch(fetchCameras());
           return Promise.resolve();
-        } catch (error) {
+        }
+ catch (error) {
           dispatch(failure(error));
           return Promise.reject();
         }
-      } else {
+      }
+ else {
         dispatch(failure('Something went wrong'));
         return Promise.reject();
       }

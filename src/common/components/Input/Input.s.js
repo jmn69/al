@@ -14,8 +14,10 @@ export const CharactersMax = styled.span`
 const Input = styled.input`
   border-radius: 8px;
   border: 1px solid
-    ${props => (props.error ? props.theme.error : props.theme.gray)};
-  color: ${props => (props.readOnly ? props.theme.gray : props.theme.darkGray)};
+    ${props =>
+      props.error ? props.theme.colors.error : props.theme.colors.gray};
+  color: ${props =>
+    props.readOnly ? props.theme.colors.gray : props.theme.colors.darkGray};
   font-size: ${props => props.theme.fontSizes.medium};
   outline: none;
   width: 100%;
@@ -28,26 +30,26 @@ const Input = styled.input`
 
   &:focus {
     border-color: ${props =>
-      props.error ? props.theme.error : props.theme.third};
+      props.error ? props.theme.colors.error : props.theme.colors.third};
   }
   &::placeholder {
     opacity: 1;
-    color: ${props => props.theme.gray};
+    color: ${props => props.theme.colors.gray};
   }
   ,
 '&::-webkit-input-placeholder': {
     opacity: 1;
-    color: ${props => props.theme.gray};
+    color: ${props => props.theme.colors.gray};
   }
   ,
 '&::-moz-placeholder': {
     opacity: 1;
-    color: ${props => props.theme.gray};
+    color: ${props => props.theme.colors.gray};
   }
   ,
 '&:ms-input-placeholder': {
     opacity: 1;
-    color: ${props => props.theme.gray};
+    color: ${props => props.theme.colors.gray};
   }
 `;
 Input.propTypes = {

@@ -1,6 +1,6 @@
-import types from './types';
 import makeBasicAPIReducer from 'Common/utils/makeBasicAPIReducer';
 import { combineReducers } from 'redux';
+import types from './types';
 
 const fetchCamerasReducer = makeBasicAPIReducer(
   types.FETCH_CAMERAS_REQUEST,

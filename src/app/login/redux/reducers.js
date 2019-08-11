@@ -1,5 +1,5 @@
-import types from './types';
 import makeBasicAPIReducer from 'Common/utils/makeBasicAPIReducer';
+import types from './types';
 
 export default makeBasicAPIReducer(
   types.LOGIN_REQUEST,

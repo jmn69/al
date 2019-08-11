@@ -9,8 +9,8 @@ export const ContentContainer = styled.div`
   position: relative;
   margin-left: 0;
   padding: 20px;
-  background: ${props => props.theme.lightGray};
-  color: ${props => props.theme.darkGray};
+  background: ${props => props.theme.colors.lightGray};
+  color: ${props => props.theme.colors.darkGray};
   min-height: 100%;
   font-size: ${props => props.theme.fontSizes.medium};
 `;
