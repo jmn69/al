@@ -50,16 +50,32 @@ export default defineMessages({
     defaultMessage: 'Create a camera',
   },
   PublicDomainPlaceholder: {
-    id: 'CommonTrad.PublicDomainPlaceholder',
+    id: 'Security.PublicDomainPlaceholder',
     defaultMessage: 'Enter a public domain or ip',
   },
   PrivateIpPlaceholder: {
-    id: 'CommonTrad.PrivateIpPlaceholder',
+    id: 'Security.PrivateIpPlaceholder',
     defaultMessage: 'Enter a private ip',
   },
   WsStreamUrlPlaceholder: {
-    id: 'CommonTrad.WsStreamUrlPlaceholder',
+    id: 'Security.WsStreamUrlPlaceholder',
     defaultMessage: 'Enter a websocket stream url',
+  },
+  HttpsPort: {
+    id: 'Security.HttpsPort',
+    defaultMessage: 'Https port',
+  },
+  HttpsPortPlaceholder: {
+    id: 'Security.HttpsPortPlaceholder',
+    defaultMessage: 'Enter an https port',
+  },
+  RtspPort: {
+    id: 'Security.RtspPort',
+    defaultMessage: 'Rtsp port',
+  },
+  RtspPortPlaceholder: {
+    id: 'Security.RtspPortPlaceholder',
+    defaultMessage: 'Enter an rtsp port',
   },
   WsStreamUrl: {
     id: 'Security.WsStreamUrl',

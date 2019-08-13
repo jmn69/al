@@ -10,6 +10,7 @@ import { compose } from 'redux';
 import Modal from 'Common/components/Modal';
 import { Form, Field } from 'react-final-form';
 import Button from 'Common/components/Button';
+import { composeValidators, required, notEmptyString } from 'Common/rules';
 import ButtonOutline from 'Common/components/ButtonOutline';
 import {
   ModalHeader,
@@ -82,61 +83,6 @@ class ManageCameraModalComponent extends Component {
         <ModalContent>
           <Form
             onSubmit={this.handleSubmit}
-            validate={values => {
-              const errors = {};
-              if (!values.name) {
-                errors.name = (
-                  <FormattedMessage {...CommonIntl.FieldRequired} />
-                );
-              }
-              if (values.name && !values.name.trim()) {
-                errors.name = (
-                  <FormattedMessage {...CommonIntl.FieldRequired} />
-                );
-              }
-              if (!values.type) {
-                errors.type = (
-                  <FormattedMessage {...CommonIntl.FieldRequired} />
-                );
-              }
-              if (!values.publicDomain) {
-                errors.publicDomain = (
-                  <FormattedMessage {...CommonIntl.FieldRequired} />
-                );
-              }
-              if (values.publicDomain && !values.publicDomain.trim()) {
-                errors.publicDomain = (
-                  <FormattedMessage {...CommonIntl.FieldRequired} />
-                );
-              }
-              if (!values.privateIp) {
-                errors.privateIp = (
-                  <FormattedMessage {...CommonIntl.FieldRequired} />
-                );
-              }
-              if (values.privateIp && !values.privateIp.trim()) {
-                errors.privateIp = (
-                  <FormattedMessage {...CommonIntl.FieldRequired} />
-                );
-              }
-              if (!values.user) {
-                errors.user = (
-                  <FormattedMessage {...CommonIntl.FieldRequired} />
-                );
-              }
-              if (values.user && !values.user.trim()) {
-                errors.user = (
-                  <FormattedMessage {...CommonIntl.FieldRequired} />
-                );
-              }
-              if (!values.pwd) {
-                errors.pwd = <FormattedMessage {...CommonIntl.FieldRequired} />;
-              }
-              if (values.pwd && !values.pwd.trim()) {
-                errors.pwd = <FormattedMessage {...CommonIntl.FieldRequired} />;
-              }
-              return errors;
-            }}
             render={({ handleSubmit }) => (
               <FormContainer id='manageCameraForm' onSubmit={handleSubmit}>
                 <Flex
@@ -149,6 +95,7 @@ class ManageCameraModalComponent extends Component {
                       <Field
                         required
                         name='name'
+                        validate={composeValidators(required, notEmptyString)}
                         component={InputAdapter}
                         label={intl.formatMessage(CommonIntl.Name)}
                         type='text'
@@ -163,6 +110,7 @@ class ManageCameraModalComponent extends Component {
                       <Field
                         name='type'
                         required
+                        validate={required}
                         component={SelectAdapter}
                         options={cameraTypeToSelectOption(intl)}
                         label={intl.formatMessage(CommonIntl.Type)}
@@ -177,6 +125,7 @@ class ManageCameraModalComponent extends Component {
                       <Field
                         required
                         name='publicDomain'
+                        validate={composeValidators(required, notEmptyString)}
                         component={InputAdapter}
                         label={intl.formatMessage(SecurityIntl.PublicDomain)}
                         type='text'
@@ -191,6 +140,7 @@ class ManageCameraModalComponent extends Component {
                       <Field
                         required
                         name='privateIp'
+                        validate={composeValidators(required, notEmptyString)}
                         component={InputAdapter}
                         label={intl.formatMessage(SecurityIntl.PrivateIp)}
                         type='text'
@@ -205,6 +155,7 @@ class ManageCameraModalComponent extends Component {
                       <Field
                         required
                         name='user'
+                        validate={composeValidators(required, notEmptyString)}
                         component={InputAdapter}
                         label={intl.formatMessage(CommonIntl.User)}
                         type='text'
@@ -219,6 +170,7 @@ class ManageCameraModalComponent extends Component {
                       <Field
                         required
                         name='pwd'
+                        validate={composeValidators(required, notEmptyString)}
                         component={InputAdapter}
                         label={intl.formatMessage(CommonIntl.Pwd)}
                         type='password'
@@ -237,6 +189,32 @@ class ManageCameraModalComponent extends Component {
                         type='text'
                         placeholder={intl.formatMessage(
                           SecurityIntl.WsStreamUrlPlaceholder
+                        )}
+                      />
+                    </FormField>
+                  </Box>
+                  <Box width='45%'>
+                    <FormField>
+                      <Field
+                        name='httpsPort'
+                        component={InputAdapter}
+                        label={intl.formatMessage(SecurityIntl.HttpsPort)}
+                        type='text'
+                        placeholder={intl.formatMessage(
+                          SecurityIntl.HttpsPortPlaceholder
+                        )}
+                      />
+                    </FormField>
+                  </Box>
+                  <Box width='45%'>
+                    <FormField>
+                      <Field
+                        name='rtspPort'
+                        component={InputAdapter}
+                        label={intl.formatMessage(SecurityIntl.RtspPort)}
+                        type='text'
+                        placeholder={intl.formatMessage(
+                          SecurityIntl.RtspPortPlaceholder
                         )}
                       />
                     </FormField>
