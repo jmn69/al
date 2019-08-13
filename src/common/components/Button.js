@@ -36,8 +36,9 @@ const Button = styled.button`
   font-size: ${props => getFontSize(props)};
   line-height: ${props => getLineHeight(props)};
   font-weight: bold;
+  min-height: 38px;
   color: ${props => props.color};
-  background: ${props => props.bg};
+  background: ${props => (props.bg ? props.bg : props.theme.colors.primary)};
   border-radius: 4px;
   -webkit-font-smoothing: antialiased;
   display: inline-block;
@@ -46,13 +47,15 @@ const Button = styled.button`
   text-decoration: none;
   -webkit-appearance: none;
   padding: 3px 10px;
+  border: none;
   cursor: pointer;
   &:disabled {
     opacity: 0.25;
   }
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px ${props => props.bg};
+    box-shadow: 0 0 0 2px
+      ${props => (props.bg ? props.bg : props.theme.colors.primary)};
   }
 `;
 
@@ -63,7 +66,6 @@ Button.propTypes = {
 Button.defaultProps = {
   size: 'medium',
   color: 'white',
-  bg: '#35cd93',
 };
 
 export default Button;
