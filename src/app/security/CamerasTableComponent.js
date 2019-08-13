@@ -113,6 +113,7 @@ class CamerasTableComponent extends Component {
                   <ToggleWrapper>
                     <Toggle
                       defaultChecked={camera.ioAlarm !== 0}
+                      checked={camera.ioAlarm !== 0}
                       onChange={() =>
                         this.handleToggleDetectionStatus(camera._id)
                       }

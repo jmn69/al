@@ -3,6 +3,7 @@ import Card from 'Common/components/Card';
 import Text from 'Common/components/Text';
 import Modal from 'Common/components/Modal';
 import Button from 'Common/components/Button';
+import Loader from 'Common/components/Loader';
 import { compose } from 'redux';
 import ButtonOutline from 'Common/components/ButtonOutline';
 import {
@@ -27,6 +28,7 @@ class LockWidget extends Component {
     setSecurityMod: T.func.isRequired,
     theme: T.any,
     intl: T.any,
+    isLoading: T.bool.isRequired,
   };
 
   static defaultProps = {
@@ -42,7 +44,7 @@ class LockWidget extends Component {
   };
 
   render() {
-    const { lock, theme } = this.props;
+    const { lock, theme, isLoading } = this.props;
     const { isOpen, currentCount } = this.state;
 
     const background = lock
@@ -64,13 +66,17 @@ class LockWidget extends Component {
               </IconWrapper>
             </Box>
             <Box width={3 / 5}>
-              <Text
-                color={theme.colors.darkGray}
-                textAlign='center'
-                size='title'
-              >
-                <FormattedMessage {...message} />
-              </Text>
+              {isLoading ? (
+                <Loader size='3x' />
+              ) : (
+                <Text
+                  color={theme.colors.darkGray}
+                  textAlign='center'
+                  size='title'
+                >
+                  <FormattedMessage {...message} />
+                </Text>
+              )}
             </Box>
           </CardContent>
         </Card>
@@ -142,12 +148,12 @@ class LockWidget extends Component {
   };
 
   handleSecurityModClick = () => {
-    const { lock, setSecurityMod } = this.props;
-    if (!lock) {
+    const { lock, setSecurityMod, isLoading } = this.props;
+    if (!lock && !isLoading) {
       const intervalId = setInterval(this.timer, 1000);
       this.setState({ isOpen: true, currentCount: 30, intervalId });
     }
- else {
+    if (lock && !isLoading) {
       setSecurityMod(!lock);
     }
   };

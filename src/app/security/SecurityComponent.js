@@ -38,6 +38,7 @@ class SecurityComponent extends Component {
     setSecurityMod: T.func.isRequired,
     fetchCameras: T.func.isRequired,
     isLoading: T.bool.isRequired,
+    isSetSecurityModLoading: T.bool.isRequired,
     error: T.any,
     cameras: T.arrayOf(cameraType),
     theme: T.any.isRequired,
@@ -51,7 +52,7 @@ class SecurityComponent extends Component {
 
   state = { isOpen: false, initialRenderComplete: false };
 
-  componentDidMount() {
+  async componentDidMount() {
     const { fetchCameras } = this.props;
     fetchCameras();
   }
@@ -66,7 +67,14 @@ class SecurityComponent extends Component {
   }
 
   render() {
-    const { lock, setSecurityMod, theme, isLoading, cameras } = this.props;
+    const {
+      lock,
+      setSecurityMod,
+      theme,
+      isLoading,
+      cameras,
+      isSetSecurityModLoading,
+    } = this.props;
     const { isOpen, initialRenderComplete } = this.state;
 
     return (
@@ -78,7 +86,11 @@ class SecurityComponent extends Component {
             <Box width={9 / 10}>
               <Flex mb={4}>
                 <Box px={2} width={1 / 3}>
-                  <LockWidget setSecurityMod={setSecurityMod} lock={lock} />
+                  <LockWidget
+                    setSecurityMod={setSecurityMod}
+                    lock={lock}
+                    isLoading={isSetSecurityModLoading}
+                  />
                 </Box>
                 <Box px={2} width={1 / 3}>
                   <Card>

@@ -26,16 +26,20 @@ const toggleDetectionCameraReducer = makeBasicAPIReducer(
   types.TOGGLE_DETECTION_CAMERA_FAILURE
 );
 
+const setSecurityModReducer = makeBasicAPIReducer(
+  types.SET_SECURITY_MOD_REQUEST,
+  types.SET_SECURITY_MOD_SUCCESS,
+  types.SET_SECURITY_MOD_FAILURE
+);
 const INITIAL_STATE = {
   lock: false,
 };
 const securityStatusReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case types.SET_SECURITY_MOD: {
-      const { payload } = action;
+    case types.SET_SECURITY_STATUS: {
       return {
         ...state,
-        lock: payload,
+        lock: action.payload,
       };
     }
 
@@ -46,6 +50,7 @@ const securityStatusReducer = (state = INITIAL_STATE, action) => {
 
 const rootSecurityReducer = combineReducers({
   status: securityStatusReducer,
+  setSecurityMod: setSecurityModReducer,
   fetchCameras: fetchCamerasReducer,
   createCamera: createCameraReducer,
   deleteCamera: deleteCameraReducer,

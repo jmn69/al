@@ -5,23 +5,23 @@ module.exports = {
   parserOptions: {
     ecmaFeatures: {
       generators: true,
-      experimentalObjectRestSpread: true,
+      experimentalObjectRestSpread: true
     },
     sourceType: 'module',
-    allowImportExportEverywhere: false,
+    allowImportExportEverywhere: false
   },
   plugins: ['flowtype'],
   extends: ['airbnb', 'prettier'],
   settings: {
     flowtype: {
-      onlyFilesWithFlowAnnotation: true,
+      onlyFilesWithFlowAnnotation: true
     },
     'import/resolver': {
       node: {
         paths: [path.resolve(__dirname, 'src')],
-        extensions: ['.js', '.json', '.styl'],
-      },
-    },
+        extensions: ['.js', '.json', '.styl']
+      }
+    }
   },
   globals: {
     window: true,
@@ -40,7 +40,7 @@ module.exports = {
     alert: true,
     arguments: true,
     localStorage: true,
-    navigator: true,
+    navigator: true
   },
   rules: {
     'import/extensions': [
@@ -50,8 +50,8 @@ module.exports = {
         js: 'never',
         jsx: 'never',
         styl: 'never',
-        css: 'never',
-      },
+        css: 'never'
+      }
     ],
     'no-shadow': 0,
     'no-use-before-define': 0,
@@ -94,16 +94,16 @@ module.exports = {
       {
         allowShortCircuit: true,
         allowTernary: true,
-        allowTaggedTemplates: true,
-      },
+        allowTaggedTemplates: true
+      }
     ],
     'import/no-extraneous-dependencies': [
       'error',
       {
         devDependencies: true,
         optionalDependencies: true,
-        peerDependencies: true,
-      },
+        peerDependencies: true
+      }
     ],
     'max-len': [
       'error',
@@ -114,8 +114,8 @@ module.exports = {
         ignoreComments: true,
         ignoreRegExpLiterals: true,
         ignoreStrings: true,
-        ignoreTemplateLiterals: true,
-      },
+        ignoreTemplateLiterals: true
+      }
     ],
     'react/no-children-prop': 1,
     'react/no-did-update-set-state': 0,
@@ -133,10 +133,10 @@ module.exports = {
           'static-methods',
           'lifecycle',
           'render',
-          'everything-else',
-        ],
-      },
+          'everything-else'
+        ]
+      }
     ],
-    'linebreak-style': 0,
-  },
+    'linebreak-style': 0
+  }
 };

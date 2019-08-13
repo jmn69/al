@@ -1,10 +1,10 @@
 import types from './types';
 
-const setSecurityMod = mod => ({
-  type: types.SET_SECURITY_MOD,
-  payload: mod,
+const setSecurityStatus = lock => ({
+  type: types.SET_SECURITY_STATUS,
+  payload: lock,
 });
 
 export default {
-  setSecurityMod,
+  setSecurityStatus,
 };
