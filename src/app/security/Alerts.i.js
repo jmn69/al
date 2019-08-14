@@ -5,4 +5,8 @@ export default defineMessages({
     id: 'Alerts.LatestAlerts',
     defaultMessage: 'Latest alerts',
   },
+  ModalTitle: {
+    id: 'Alerts.ModalTitle',
+    defaultMessage: 'Recorded video',
+  },
 });
