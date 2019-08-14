@@ -33,18 +33,18 @@ export const CardTitle = styled.div`
 export const ListWrapper = styled.div`
   width: 100%;
   height: 100%;
+  overflow: hidden scroll;
 `;
 
-export const DateAlertWrapper = styled.div`
+export const DateAlertContainer = styled.div`
   height: 20px;
+  width: 180px;
+  text-align: center;
   font-size: ${props => props.theme.fontSizes.small};
-  position: absolute;
   background-color: ${props => props.theme.colors.third};
   display: flex;
   align-items: center;
   padding: 4px;
-  left: 0;
-  top: 0;
   border-bottom-right-radius: 0.25rem;
   border-top-right-radius: 0.25rem;
   color: ${props => props.theme.colors.white};
@@ -54,12 +54,14 @@ export const DateAlertWrapper = styled.div`
   }
 `;
 
-export const CameraAlertWrapper = styled.div`
-  margin-top: 26px;
-`;
-
 export const ImageAlertWrapper = styled.div`
   float: right;
+  height: 120px;
+  max-width: 60%;
+`;
+
+export const StyledImage = styled.img`
+  border-radius: 4px;
 `;
 
 export const CardHeaderWrapper = styled.div`
@@ -106,4 +108,23 @@ export const WrapperLoader = styled.div`
   margin-left: 10px;
   display: flex;
   align-items: center;
+`;
+
+export const ListItemWrapper = styled.div`
+  height: 162px;
+  min-height: 162px;
+`;
+
+export const ListItemInnerContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+`;
+
+export const AlertContentContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
 `;

@@ -7,6 +7,11 @@ const mapStateToProps = state => {
   const { lock } = state.security.status;
   const { isLoading: isSetSecurityModLoading } = state.security.setSecurityMod;
   const { data, isLoading, error } = state.security.fetchCameras;
+  const {
+    data: alerts,
+    isLoading: isLoadingAlerts,
+    error: errorAlerts,
+  } = state.security.fetchAlerts;
   return {
     currentUser,
     lock,
@@ -14,6 +19,9 @@ const mapStateToProps = state => {
     error,
     cameras: data,
     isSetSecurityModLoading,
+    alerts,
+    isLoadingAlerts,
+    errorAlerts,
   };
 };
 
@@ -21,6 +29,7 @@ const mapDispatchToProps = dispatch => {
   return {
     setSecurityMod: mod => dispatch(securityOperations.setSecurityMod(mod)),
     fetchCameras: () => dispatch(securityOperations.fetchCameras()),
+    fetchAlerts: () => dispatch(securityOperations.fetchAlerts()),
   };
 };
 

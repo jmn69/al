@@ -1,18 +1,17 @@
 import React, { Component, Fragment } from 'react';
 import { Box, Flex } from '@rebass/grid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCamera, faImage } from '@fortawesome/free-solid-svg-icons';
+import { faCamera } from '@fortawesome/free-solid-svg-icons';
 import T from 'prop-types';
 import { compose } from 'redux';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import { withTheme } from 'styled-components';
 
 import Card from 'Common/components/Card';
-import ListGroup from 'Common/components/ListGroup';
-import ListItem from 'Common/components/ListItem';
 import Loader from 'Common/components/Loader';
 import Button from 'Common/components/Button';
 import Text from 'Common/components/Text';
+import Alerts from './Alerts';
 import CamerasTableContainer from './CamerasTableContainer';
 import LockWidget from './LockWidget';
 import SecurityIntl from './Security.i';
@@ -20,15 +19,9 @@ import {
   CardContent,
   IconWrapper,
   CardTitle,
-  ListWrapper,
-  DateAlertWrapper,
-  CameraAlertWrapper,
-  ImageAlertWrapper,
   CardHeaderWrapper,
-  CardHeaderAlerts,
-  CardAlertsContent,
 } from './Security.s';
-import { cameraType } from './types';
+import { cameraType, alertType } from './types';
 import ManageCameraModalContainer from './ManageCameraModalContainer';
 
 class SecurityComponent extends Component {
@@ -37,24 +30,31 @@ class SecurityComponent extends Component {
     currentUser: T.string.isRequired,
     setSecurityMod: T.func.isRequired,
     fetchCameras: T.func.isRequired,
+    fetchAlerts: T.func.isRequired,
     isLoading: T.bool.isRequired,
+    isLoadingAlerts: T.bool.isRequired,
     isSetSecurityModLoading: T.bool.isRequired,
     error: T.any,
+    errorAlerts: T.any,
     cameras: T.arrayOf(cameraType),
+    alerts: T.arrayOf(alertType),
     theme: T.any.isRequired,
     intl: T.any.isRequired,
   };
 
   static defaultProps = {
     error: null,
+    errorAlerts: null,
     cameras: [],
+    alerts: [],
   };
 
   state = { isOpen: false, initialRenderComplete: false };
 
   async componentDidMount() {
-    const { fetchCameras } = this.props;
+    const { fetchCameras, fetchAlerts } = this.props;
     fetchCameras();
+    fetchAlerts();
   }
 
   componentDidUpdate(prevProps) {
@@ -74,6 +74,8 @@ class SecurityComponent extends Component {
       isLoading,
       cameras,
       isSetSecurityModLoading,
+      isLoadingAlerts,
+      alerts,
     } = this.props;
     const { isOpen, initialRenderComplete } = this.state;
 
@@ -117,53 +119,7 @@ class SecurityComponent extends Component {
                   </Card>
                 </Box>
                 <Box px={2} width={1 / 3}>
-                  <Card>
-                    <CardHeaderAlerts>
-                      <Box width={3 / 5}>
-                        <CardTitle>
-                          <Text size='large'>
-                            <FormattedMessage {...SecurityIntl.LatestAlerts} />
-                          </Text>
-                        </CardTitle>
-                      </Box>
-                    </CardHeaderAlerts>
-                    <CardAlertsContent alignItems='flex-start' withTitle>
-                      <ListWrapper>
-                        <ListGroup>
-                          <ListItem padding='0.5rem 1.25rem'>
-                            <DateAlertWrapper>
-                              <Text color='white'>10/09/18 à 10:00:34</Text>
-                            </DateAlertWrapper>
-                            <CameraAlertWrapper>
-                              <Text>Camera 1</Text>
-                            </CameraAlertWrapper>
-                            <ImageAlertWrapper>
-                              <FontAwesomeIcon
-                                color='gray'
-                                size='2x'
-                                icon={faImage}
-                              />
-                            </ImageAlertWrapper>
-                          </ListItem>
-                          <ListItem padding='0.5rem 1.25rem'>
-                            <DateAlertWrapper>
-                              <Text color='white'>07/09/18 à 11:03:20</Text>
-                            </DateAlertWrapper>
-                            <CameraAlertWrapper>
-                              <Text>Camera 2</Text>
-                            </CameraAlertWrapper>
-                            <ImageAlertWrapper>
-                              <FontAwesomeIcon
-                                color='gray'
-                                size='2x'
-                                icon={faImage}
-                              />
-                            </ImageAlertWrapper>
-                          </ListItem>
-                        </ListGroup>
-                      </ListWrapper>
-                    </CardAlertsContent>
-                  </Card>
+                  <Alerts alerts={alerts} isLoading={isLoadingAlerts} />
                 </Box>
               </Flex>
               <Flex>

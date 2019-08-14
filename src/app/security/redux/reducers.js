@@ -31,6 +31,13 @@ const setSecurityModReducer = makeBasicAPIReducer(
   types.SET_SECURITY_MOD_SUCCESS,
   types.SET_SECURITY_MOD_FAILURE
 );
+
+const fetchAlertsReducer = makeBasicAPIReducer(
+  types.FETCH_ALERTS_REQUEST,
+  types.FETCH_ALERTS_SUCCESS,
+  types.FETCH_ALERTS_FAILURE
+);
+
 const INITIAL_STATE = {
   lock: false,
 };
@@ -55,6 +62,7 @@ const rootSecurityReducer = combineReducers({
   createCamera: createCameraReducer,
   deleteCamera: deleteCameraReducer,
   toggleDetectionCamera: toggleDetectionCameraReducer,
+  fetchAlerts: fetchAlertsReducer,
 });
 
 export default rootSecurityReducer;

@@ -211,10 +211,44 @@ const setSecurityMod = makeBasicAPIActions(
   }
 );
 
+const fetchAlerts = makeBasicAPIActions(
+  'FETCH_ALERTS',
+  (request, success, failure) => () => {
+    return async dispatch => {
+      dispatch(request());
+      let response;
+      try {
+        response = await apiRequest({ endpoint: `alert` });
+      }
+ catch (error) {
+        dispatch(failure(error));
+        return Promise.reject();
+      }
+
+      if (response.ok) {
+        try {
+          const alerts = await response.json();
+          dispatch(success(alerts));
+          return Promise.resolve();
+        }
+ catch (error) {
+          dispatch(failure(error));
+          return Promise.reject();
+        }
+      }
+ else {
+        dispatch(failure('Something went wrong'));
+        return Promise.reject();
+      }
+    };
+  }
+);
+
 export default {
   setSecurityMod,
   fetchCameras,
   createCamera,
   deleteCamera,
   toggleDetection,
+  fetchAlerts,
 };

@@ -1,10 +1,6 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
-  LatestAlerts: {
-    id: 'Security.LatestAlerts',
-    defaultMessage: 'Latest alerts',
-  },
   SeeTheCameras: {
     id: 'Security.SeeTheCameras',
     defaultMessage: 'See the cameras',
