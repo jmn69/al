@@ -19,7 +19,7 @@
     "history": "^4.7.2",
     "identity-obj-proxy": "3.0.0",
     "is-wsl": "^1.1.0",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.19",
     "lodash.get": "^4.4.2",
     "object-assign": "4.1.1",
     "promise": "8.0.1",
